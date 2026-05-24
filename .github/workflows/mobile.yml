@@ -6,84 +6,385 @@ on:
       - main
       - develop
 
+  pull_request:
+    branches:
+      - develop
+
   workflow_dispatch:
 
 jobs:
 
-  android-test:
+  # =========================================================
+  # SMOKE TESTS
+  # =========================================================
+  smoke-tests:
+
+    name: Smoke Tests
 
     runs-on: ubuntu-latest
 
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.studentapp
+      APP_ACTIVITY: io.branch.unity.BranchUnityActivity
+
+      PLATFORM_NAME: Android
+      PLATFORM_VERSION: "13"
+
+      DEVICE_NAME: emulator-5554
+
+      APPIUM_SERVER: http://127.0.0.1:4723
+
     steps:
 
-      - name: Checkout
+      # =====================================================
+      # Checkout Repository
+      # =====================================================
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # =====================================================
+      # Setup Python
+      # =====================================================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install Python dependencies
+      # =====================================================
+      # Install Python Dependencies
+      # =====================================================
+      - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Setup Node
+      # =====================================================
+      # Setup NodeJS
+      # =====================================================
+      - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
+      # =====================================================
+      # Install Appium + Driver
+      # =====================================================
       - name: Install Appium
         run: |
           npm install -g appium
           appium driver install uiautomator2
+          appium driver list --installed
 
-      - name: Start Appium
-        run: |
-          appium --log appium.log &
-          sleep 15
-
-      - name: Install Android SDK
+      # =====================================================
+      # Setup Android SDK
+      # =====================================================
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      # =====================================================
+      # Accept Android Licenses
+      # =====================================================
+      - name: Accept Android Licenses
+        run: |
+          yes | sdkmanager --licenses
+
+      # =====================================================
+      # Install Android Packages
+      # =====================================================
+      - name: Install Android Packages
+        run: |
+          sdkmanager --install \
+            "platform-tools" \
+            "platforms;android-33" \
+            "emulator" \
+            "system-images;android-33;google_apis;x86_64"
+
+      # =====================================================
+      # Verify System Images
+      # =====================================================
+      - name: Verify System Images
+        run: |
+          sdkmanager --list | grep "system-images;android-33"
+
+      # =====================================================
+      # Create Emulator
+      # =====================================================
       - name: Create Emulator
         run: |
-          avdmanager create avd \
-          -n test \
-          -k "system-images;android-33;google_apis;x86_64" \
-          --device "pixel"
+          echo "no" | avdmanager create avd \
+            -n test \
+            -k "system-images;android-33;google_apis;x86_64" \
+            --device "pixel"
 
+      # =====================================================
+      # Start Emulator
+      # =====================================================
       - name: Start Emulator
         run: |
-          emulator -avd test -no-window -no-audio &
+          nohup emulator -avd test \
+            -no-window \
+            -no-audio \
+            -no-boot-anim \
+            -gpu swiftshader_indirect &
+
           adb wait-for-device
+
+          boot_completed=""
+
+          until [[ "$boot_completed" == "1" ]]; do
+            boot_completed=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            echo "Waiting for emulator boot..."
+            sleep 5
+          done
+
+          echo "Emulator boot completed"
+
           adb shell settings put global window_animation_scale 0
           adb shell settings put global transition_animation_scale 0
           adb shell settings put global animator_duration_scale 0
 
-      - name: Install APK
-        run: |
-          adb install app/student.apk
+          adb devices
 
-      - name: Run Automation
+      # =====================================================
+      # Start Appium Server
+      # =====================================================
+      - name: Start Appium Server
         run: |
-          pytest tests/test_login_flow.py
+          appium --log appium.log > appium-output.log 2>&1 &
+          sleep 20
 
-      - name: Upload Screenshots
+          curl http://127.0.0.1:4723/status
+
+      # =====================================================
+      # Verify Installed App
+      # =====================================================
+      - name: Verify App Installed
+        run: |
+          adb shell pm list packages | grep "EnglishGurukul"
+
+      # =====================================================
+      # Run Smoke Tests
+      # =====================================================
+      - name: Run Smoke Tests
+        run: |
+          pytest -m smoke -v -s \
+            --reruns 2 \
+            --reruns-delay 5 \
+            --alluredir=allure-results
+
+      # =====================================================
+      # Upload Allure Results
+      # =====================================================
+      - name: Upload Allure Results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshots
+          name: allure-results-smoke
+          path: allure-results/
+
+      # =====================================================
+      # Upload Screenshots
+      # =====================================================
+      - name: Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-smoke
           path: screenshots/
 
-      - name: Upload Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: reports
-          path: reports/
-
+      # =====================================================
+      # Upload Appium Logs
+      # =====================================================
       - name: Upload Appium Logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: appium-logs
-          path: appium.log
+          name: appium-logs-smoke
+          path: |
+            appium.log
+            appium-output.log
+
+  # =========================================================
+  # REGRESSION TESTS
+  # =========================================================
+  regression-tests:
+
+    name: Regression Tests
+
+    runs-on: ubuntu-latest
+
+    needs: smoke-tests
+
+    if: github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch'
+
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.studentapp
+      APP_ACTIVITY: io.branch.unity.BranchUnityActivity
+
+      PLATFORM_NAME: Android
+      PLATFORM_VERSION: "13"
+
+      DEVICE_NAME: emulator-5554
+
+      APPIUM_SERVER: http://127.0.0.1:4723
+
+    steps:
+
+      # =====================================================
+      # Checkout Repository
+      # =====================================================
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # =====================================================
+      # Setup Python
+      # =====================================================
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # =====================================================
+      # Install Python Dependencies
+      # =====================================================
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # =====================================================
+      # Setup NodeJS
+      # =====================================================
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # =====================================================
+      # Install Appium + Driver
+      # =====================================================
+      - name: Install Appium
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+          appium driver list --installed
+
+      # =====================================================
+      # Setup Android SDK
+      # =====================================================
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # =====================================================
+      # Accept Android Licenses
+      # =====================================================
+      - name: Accept Android Licenses
+        run: |
+          yes | sdkmanager --licenses
+
+      # =====================================================
+      # Install Android Packages
+      # =====================================================
+      - name: Install Android Packages
+        run: |
+          sdkmanager --install \
+            "platform-tools" \
+            "platforms;android-33" \
+            "emulator" \
+            "system-images;android-33;google_apis;x86_64"
+
+      # =====================================================
+      # Create Emulator
+      # =====================================================
+      - name: Create Emulator
+        run: |
+          echo "no" | avdmanager create avd \
+            -n test \
+            -k "system-images;android-33;google_apis;x86_64" \
+            --device "pixel"
+
+      # =====================================================
+      # Start Emulator
+      # =====================================================
+      - name: Start Emulator
+        run: |
+          nohup emulator -avd test \
+            -no-window \
+            -no-audio \
+            -no-boot-anim \
+            -gpu swiftshader_indirect &
+
+          adb wait-for-device
+
+          boot_completed=""
+
+          until [[ "$boot_completed" == "1" ]]; do
+            boot_completed=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            echo "Waiting for emulator boot..."
+            sleep 5
+          done
+
+          echo "Emulator boot completed"
+
+      # =====================================================
+      # Start Appium Server
+      # =====================================================
+      - name: Start Appium Server
+        run: |
+          appium --log appium.log > appium-output.log 2>&1 &
+          sleep 20
+
+      # =====================================================
+      # Verify Installed App
+      # =====================================================
+      - name: Verify App Installed
+        run: |
+          adb shell pm list packages | grep "EnglishGurukul"
+
+      # =====================================================
+      # Run Regression Tests
+      # =====================================================
+      - name: Run Regression Tests
+        run: |
+          pytest -m regression -v -s \
+            --reruns 1 \
+            --reruns-delay 3 \
+            --alluredir=allure-results
+
+      # =====================================================
+      # Upload Allure Results
+      # =====================================================
+      - name: Upload Allure Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-regression
+          path: allure-results/
+
+      # =====================================================
+      # Upload Screenshots
+      # =====================================================
+      - name: Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-regression
+          path: screenshots/
+
+      # =====================================================
+      # Upload Appium Logs
+      # =====================================================
+      - name: Upload Appium Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-logs-regression
+          path: |
+            appium.log
+            appium-output.log
