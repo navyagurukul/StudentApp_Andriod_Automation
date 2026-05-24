@@ -113,16 +113,27 @@ jobs:
       # =====================================================
       # Start Appium Server
       # =====================================================
-      - name: Start Appium
+      # ================= START APPIUM =================
+      - name: Start Appium Server
         shell: powershell
         run: |
           Start-Process cmd.exe -ArgumentList "/c appium --address 127.0.0.1 --port 4723 > appium.log 2>&1"
           Start-Sleep -Seconds 20
-
-      - name: Verify Appium
+      # ================= VERIFY APPIUM =================
+      - name: Verify Appium Server
         shell: powershell
         run: |
-          curl http://127.0.0.1:4723/status
+          netstat -ano | findstr 4723
+          try {
+            $response = Invoke-RestMethod -Uri "http://127.0.0.1:4723/status"
+            Write-Host "Appium Server Running"
+            $response
+          }
+          catch {
+            Write-Host "Appium Server Failed"
+            Get-Content appium.log
+            exit 1
+          }
 
       # =====================================================
       # Run Tests
@@ -254,16 +265,27 @@ jobs:
       # =====================================================
       # Start Appium Server
       # =====================================================
-      - name: Start Appium
+      # ================= START APPIUM =================
+      - name: Start Appium Server
         shell: powershell
         run: |
           Start-Process cmd.exe -ArgumentList "/c appium --address 127.0.0.1 --port 4723 > appium.log 2>&1"
           Start-Sleep -Seconds 20
-
-      - name: Verify Appium
+      # ================= VERIFY APPIUM =================
+      - name: Verify Appium Server
         shell: powershell
         run: |
-          curl http://127.0.0.1:4723/status
+          netstat -ano | findstr 4723
+          try {
+            $response = Invoke-RestMethod -Uri "http://127.0.0.1:4723/status"
+            Write-Host "Appium Server Running"
+            $response
+          }
+          catch {
+            Write-Host "Appium Server Failed"
+            Get-Content appium.log
+            exit 1
+          }
 
       - name: Run Regression Tests
         run: |
