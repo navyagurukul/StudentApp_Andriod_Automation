@@ -1,0 +1,30 @@
+2026-05-24 06:09:06,283 [INFO] Connecting to Appium...
+2026-05-24 06:09:19,113 [INFO] App launched — screen 2400x1080
+2026-05-24 06:09:19,113 [INFO] Total users: 1
+2026-05-24 06:09:19,113 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 06:09:19,140 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 06:09:19,141 [INFO] ===== HANDLING PERMISSIONS =====
+2026-05-24 06:09:28,347 [INFO] STEP 1: LOGIN
+2026-05-24 06:09:28,347 [INFO] VALIDATING SCREEN: login_screen
+2026-05-24 06:09:28,347 [INFO] 🔍 Looking for screen: login_screen
+2026-05-24 06:09:36,693 [INFO] Current screen detected: login_screen
+2026-05-24 06:09:36,707 [INFO] ✅ Screen detected: login_screen
+2026-05-24 06:09:39,025 [INFO] Screenshot: screenshots/u1_login_1779583176.png
+2026-05-24 06:09:39,025 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 06:09:45,194 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 06:09:46,198 [INFO] Tap [OK] at (2166,442)
+2026-05-24 06:09:47,170 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 06:09:48,143 [INFO] Waiting 1s — allow UI to process
+2026-05-24 06:09:49,144 [INFO] WAITING FOR NEXT SCREEN...
+2026-05-24 06:09:57,725 [INFO] Current screen: login_screen
+2026-05-24 06:10:06,225 [INFO] Current screen: login_screen
+2026-05-24 06:10:14,790 [INFO] Current screen: login_screen
+2026-05-24 06:10:23,232 [INFO] Current screen: login_screen
+2026-05-24 06:10:31,443 [INFO] Current screen: login_screen
+2026-05-24 06:10:32,447 [ERROR] ❌ FAILED — 8247282471: None of expected screens appeared: ['license_screen', 'Select_Profile_screen', 'begin_scene', 'home_screen']
+2026-05-24 06:10:34,842 [INFO] Screenshot: screenshots/FAILED_u1_8247282471_1779583232.png
+2026-05-24 06:10:34,843 [INFO] FAIL | 8247282471 | None of expected screens appeared: ['license_screen', 'Select_Profile_screen', 'begin_scene', 'home_screen']
+2026-05-24 06:10:34,843 [INFO] ALL USERS COMPLETED
+2026-05-24 06:10:34,843 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 06:10:35,203 [INFO] Session closed

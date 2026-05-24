@@ -1,0 +1,89 @@
+name: EnglishGurukulAutomation
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  workflow_dispatch:
+
+jobs:
+
+  android-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Appium
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Start Appium
+        run: |
+          appium --log appium.log &
+          sleep 15
+
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Create Emulator
+        run: |
+          avdmanager create avd \
+          -n test \
+          -k "system-images;android-33;google_apis;x86_64" \
+          --device "pixel"
+
+      - name: Start Emulator
+        run: |
+          emulator -avd test -no-window -no-audio &
+          adb wait-for-device
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+
+      - name: Install APK
+        run: |
+          adb install app/student.apk
+
+      - name: Run Automation
+        run: |
+          pytest tests/test_login_flow.py
+
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: reports/
+
+      - name: Upload Appium Logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-logs
+          path: appium.log

@@ -1,0 +1,26 @@
+2026-05-24 03:31:44,350 [INFO] Connecting to Appium...
+2026-05-24 03:31:57,714 [INFO] App launched — screen 2400x1080
+2026-05-24 03:31:57,716 [INFO] Total users: 1
+2026-05-24 03:31:57,716 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 03:31:57,734 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 03:31:57,735 [INFO] STEP 0: CHECKING PERMISSIONS
+2026-05-24 03:32:06,794 [INFO] STEP 1: LOGIN
+2026-05-24 03:32:06,795 [INFO] Waiting 3s — login screen
+2026-05-24 03:32:13,318 [INFO] Screenshot: screenshots/u1_login_1779573729.png
+2026-05-24 03:32:13,318 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 03:32:17,862 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 03:32:17,862 [INFO] Tap [OK] at (2166,442)
+2026-05-24 03:32:18,548 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 03:32:19,244 [INFO] VALIDATING SCREEN: post_login
+2026-05-24 03:32:21,014 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:23,049 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:24,844 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:26,699 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:28,574 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:30,434 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:32,272 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:34,102 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:35,979 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:37,822 [ERROR] UI dump error: [Errno 2] No such file or directory: 'ui.xml'
+2026-05-24 03:32:39,383 [INFO] Session closed

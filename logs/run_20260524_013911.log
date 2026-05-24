@@ -1,0 +1,36 @@
+2026-05-24 01:39:11,492 [INFO] Connecting to Appium...
+2026-05-24 01:39:23,275 [INFO] App launched — screen 2400x1080
+2026-05-24 01:39:23,278 [INFO] Total users: 2
+2026-05-24 01:39:23,278 [INFO] 
+=======================================================
+USER 1/2: 8247282471
+=======================================================
+2026-05-24 01:39:23,305 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 01:39:23,305 [INFO] --- Step 1: Login ---
+2026-05-24 01:39:23,306 [INFO] Waiting 6s — splash → login screen
+2026-05-24 01:39:32,815 [INFO] Screenshot: screenshots/u1_01_login_1779566969.png
+2026-05-24 01:39:32,838 [INFO] Tap [mobile input] at pixel (1142,465)
+2026-05-24 01:39:35,257 [INFO] Keyboard shown: True
+2026-05-24 01:39:39,106 [INFO] Typed '8247282471' into [mobile input]
+2026-05-24 01:39:40,607 [ERROR] FAILED 8247282471: Element 'OK_button' not found
+2026-05-24 01:39:42,549 [INFO] Screenshot: screenshots/FAILED_u1_8247282471_1779566980.png
+2026-05-24 01:39:42,549 [INFO] FAIL | 8247282471 | Element 'OK_button' not found
+2026-05-24 01:39:42,550 [INFO] Restarting app...
+2026-05-24 01:39:51,689 [INFO] App restarted
+2026-05-24 01:39:51,690 [INFO] 
+=======================================================
+USER 2/2: 9000000002
+=======================================================
+2026-05-24 01:39:51,760 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 01:39:51,761 [INFO] --- Step 1: Login ---
+2026-05-24 01:39:51,761 [INFO] Waiting 6s — splash → login screen
+2026-05-24 01:40:01,184 [INFO] Screenshot: screenshots/u2_01_login_1779566997.png
+2026-05-24 01:40:01,184 [INFO] Tap [mobile input] at pixel (1142,465)
+2026-05-24 01:40:03,858 [INFO] Keyboard shown: False
+2026-05-24 01:40:07,568 [INFO] Typed '9000000002' into [mobile input]
+2026-05-24 01:40:09,069 [ERROR] FAILED 9000000002: Element 'OK_button' not found
+2026-05-24 01:40:11,834 [INFO] Screenshot: screenshots/FAILED_u2_9000000002_1779567009.png
+2026-05-24 01:40:11,835 [INFO] FAIL | 9000000002 | Element 'OK_button' not found
+2026-05-24 01:40:11,836 [INFO] All users done. See logs/results.jsonl
+2026-05-24 01:40:11,837 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 01:40:12,189 [INFO] Session closed

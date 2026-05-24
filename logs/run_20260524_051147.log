@@ -1,0 +1,38 @@
+2026-05-24 05:11:48,401 [INFO] Connecting to Appium...
+2026-05-24 05:12:00,452 [INFO] App launched — screen 2400x1080
+2026-05-24 05:12:00,478 [INFO] Total users: 1
+2026-05-24 05:12:00,478 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 05:12:00,504 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 05:12:00,504 [INFO] ===== HANDLING PERMISSIONS =====
+2026-05-24 05:12:17,847 [INFO] STEP 1: LOGIN
+2026-05-24 05:12:17,847 [INFO] VALIDATING SCREEN: login_screen
+2026-05-24 05:12:17,847 [INFO] 🔍 Looking for screen: login_screen
+2026-05-24 05:12:17,849 [INFO] Current screen detected: None
+2026-05-24 05:12:18,853 [INFO] Current screen detected: None
+2026-05-24 05:12:19,853 [INFO] Current screen detected: None
+2026-05-24 05:12:20,855 [INFO] Current screen detected: None
+2026-05-24 05:12:21,856 [INFO] Current screen detected: None
+2026-05-24 05:12:22,857 [INFO] Current screen detected: None
+2026-05-24 05:12:23,858 [INFO] Current screen detected: None
+2026-05-24 05:12:24,858 [INFO] Current screen detected: None
+2026-05-24 05:12:25,859 [INFO] Current screen detected: None
+2026-05-24 05:12:26,860 [INFO] Current screen detected: None
+2026-05-24 05:12:27,860 [INFO] Current screen detected: None
+2026-05-24 05:12:28,861 [INFO] Current screen detected: None
+2026-05-24 05:12:29,862 [INFO] Current screen detected: None
+2026-05-24 05:12:30,863 [INFO] Current screen detected: None
+2026-05-24 05:12:31,864 [INFO] Current screen detected: None
+2026-05-24 05:12:32,865 [INFO] Current screen detected: None
+2026-05-24 05:12:33,865 [INFO] Current screen detected: None
+2026-05-24 05:12:34,866 [INFO] Current screen detected: None
+2026-05-24 05:12:35,867 [INFO] Current screen detected: None
+2026-05-24 05:12:36,868 [INFO] Current screen detected: None
+2026-05-24 05:12:37,869 [ERROR] ❌ Screen NOT found: login_screen
+2026-05-24 05:12:40,557 [INFO] Screenshot: screenshots/FAILED_login_screen_1779579757.png
+2026-05-24 05:12:40,557 [ERROR] ❌ FAILED — 8247282471: ❌ Expected screen not found: login_screen
+2026-05-24 05:12:42,791 [INFO] Screenshot: screenshots/FAILED_u1_8247282471_1779579760.png
+2026-05-24 05:12:42,794 [INFO] FAIL | 8247282471 | ❌ Expected screen not found: login_screen
+2026-05-24 05:12:42,794 [INFO] ALL USERS COMPLETED
+2026-05-24 05:12:42,795 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 05:12:43,192 [INFO] Session closed

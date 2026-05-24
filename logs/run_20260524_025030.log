@@ -1,0 +1,75 @@
+2026-05-24 02:50:30,415 [INFO] Connecting to Appium...
+2026-05-24 02:50:43,019 [INFO] App launched — screen 2400x1080
+2026-05-24 02:50:43,021 [INFO] Total users: 1
+2026-05-24 02:50:43,022 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 02:50:43,041 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 02:50:43,042 [INFO] CHECKING PERMISSIONS POPUPS
+2026-05-24 02:50:43,042 [INFO] Handling permission popups
+2026-05-24 02:50:43,042 [INFO] STEP 1: LOGIN
+2026-05-24 02:50:43,042 [INFO] Waiting 3s — login screen
+2026-05-24 02:50:48,759 [INFO] Screenshot: screenshots/u1_login_1779571246.png
+2026-05-24 02:50:48,763 [INFO] Tap [mobile] at pixel (1142,465)
+2026-05-24 02:50:51,521 [INFO] Keyboard shown: False
+2026-05-24 02:50:54,590 [INFO] Typed '8247282471' into [mobile]
+2026-05-24 02:50:55,092 [INFO] Tap [OK] at pixel (2166,442)
+2026-05-24 02:50:55,768 [INFO] Tap [CONFIRM] at pixel (1203,694)
+2026-05-24 02:50:56,443 [INFO] VALIDATING SCREEN: post_login
+2026-05-24 02:50:56,444 [INFO] Checking screen: post_login
+2026-05-24 02:50:56,444 [INFO] SINGLE PROFILE AUTO LOGIN
+2026-05-24 02:50:56,444 [INFO] VALIDATING SCREEN: home_screen
+2026-05-24 02:50:56,445 [INFO] Checking screen: home_screen
+2026-05-24 02:50:56,445 [INFO] POPUPS HANDLING
+2026-05-24 02:50:56,445 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:50:57,147 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:50:57,825 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:50:58,488 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:00,154 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:00,836 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:01,509 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:02,169 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:03,837 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:04,522 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:05,195 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:05,851 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:07,521 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:08,183 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:08,857 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:09,524 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:11,184 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:11,853 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:12,530 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:13,196 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:14,879 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:15,580 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:16,257 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:16,911 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:18,573 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:19,263 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:20,032 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:20,698 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:22,381 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:23,143 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:23,819 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:24,502 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:26,180 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:26,845 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:27,514 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:28,174 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:29,837 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:51:30,505 [INFO] Tap [close] at pixel (2273,117)
+2026-05-24 02:51:31,161 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:51:31,849 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:51:37,666 [INFO] Screenshot: screenshots/u1_home_1779571293.png
+2026-05-24 02:51:37,667 [INFO] VALIDATING SCREEN: home_screen
+2026-05-24 02:51:37,667 [INFO] Checking screen: home_screen
+2026-05-24 02:51:37,668 [INFO] VALIDATING SCREEN: home_screen
+2026-05-24 02:51:37,668 [INFO] Checking screen: home_screen
+2026-05-24 02:51:37,668 [INFO] Tap [parents] at pixel (323,108)
+2026-05-24 02:51:41,375 [INFO] Tap [LOGOUT] at pixel (2236,103)
+2026-05-24 02:51:47,327 [INFO] Screenshot: screenshots/u1_logout_1779571305.png
+2026-05-24 02:51:47,328 [INFO] OK | 8247282471 | Logout done
+2026-05-24 02:51:47,329 [INFO] OK | 8247282471 | PASS
+2026-05-24 02:51:47,330 [INFO] ALL USERS COMPLETED
+2026-05-24 02:51:47,331 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 02:51:47,636 [INFO] Session closed

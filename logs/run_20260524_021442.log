@@ -1,0 +1,106 @@
+2026-05-24 02:14:42,981 [INFO] Connecting to Appium...
+2026-05-24 02:14:54,575 [INFO] App launched — screen 2400x1080
+2026-05-24 02:14:54,578 [INFO] Total users: 2
+2026-05-24 02:14:54,578 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 02:14:54,607 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 02:14:54,608 [INFO] Step 1: Login
+2026-05-24 02:14:54,609 [INFO] Waiting 5s — login screen
+2026-05-24 02:15:02,400 [INFO] Screenshot: screenshots/u1_login_1779569099.png
+2026-05-24 02:15:02,401 [INFO] Tap [mobile] at pixel (1142,465)
+2026-05-24 02:15:04,963 [INFO] Keyboard shown: True
+2026-05-24 02:15:08,834 [INFO] Typed '8247282471' into [mobile]
+2026-05-24 02:15:09,834 [INFO] Tap [OK] at pixel (2166,442)
+2026-05-24 02:15:10,525 [INFO] Tap [CONFIRM] at pixel (1203,694)
+2026-05-24 02:15:11,191 [INFO] Waiting for: post login
+2026-05-24 02:15:19,192 [INFO] EXISTING USER FLOW
+2026-05-24 02:15:19,192 [INFO] Select Profile
+2026-05-24 02:15:19,193 [INFO] Waiting 3s — profile screen
+2026-05-24 02:15:25,761 [INFO] Screenshot: screenshots/u1_profile_1779569122.png
+2026-05-24 02:15:25,761 [INFO] Tap [profile] at pixel (802,581)
+2026-05-24 02:15:27,442 [INFO] Tap [NEXT] at pixel (1120,891)
+2026-05-24 02:15:30,114 [INFO] Avatar
+2026-05-24 02:15:30,115 [INFO] Waiting 3s — avatar screen
+2026-05-24 02:15:35,718 [INFO] Screenshot: screenshots/u1_avatar_1779569133.png
+2026-05-24 02:15:35,719 [INFO] Tap [SAVE] at pixel (1158,670)
+2026-05-24 02:15:38,421 [INFO] Language
+2026-05-24 02:15:38,422 [INFO] Waiting 3s — language
+2026-05-24 02:15:41,424 [INFO] Tap [dropdown] at pixel (1692,323)
+2026-05-24 02:15:42,123 [INFO] Tap [language option] at pixel (1186,441)
+2026-05-24 02:15:42,795 [INFO] Tap [SAVE] at pixel (1177,905)
+2026-05-24 02:15:45,452 [INFO] Handling popups
+2026-05-24 02:15:47,684 [INFO] Screenshot: screenshots/u1_popup_0_1779569145.png
+2026-05-24 02:15:47,684 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:15:48,338 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:15:49,010 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:15:49,666 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:15:55,757 [INFO] Screenshot: screenshots/u1_popup_1_1779569152.png
+2026-05-24 02:15:55,757 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:15:56,415 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:15:57,083 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:15:57,740 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:16:03,934 [INFO] Screenshot: screenshots/u1_popup_2_1779569160.png
+2026-05-24 02:16:03,935 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:16:04,645 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:16:05,302 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:16:05,961 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:16:12,216 [INFO] Screenshot: screenshots/u1_popup_3_1779569168.png
+2026-05-24 02:16:12,216 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:16:12,878 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:16:13,550 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:16:14,218 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:16:16,891 [INFO] OK | 8247282471 | PASS
+2026-05-24 02:16:16,892 [INFO] Restarting app...
+2026-05-24 02:16:26,221 [INFO] App restarted
+2026-05-24 02:16:26,222 [INFO] 
+===== USER 2: 9000000002 =====
+2026-05-24 02:16:26,295 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 02:16:26,296 [INFO] Step 1: Login
+2026-05-24 02:16:26,297 [INFO] Waiting 5s — login screen
+2026-05-24 02:16:34,155 [INFO] Screenshot: screenshots/u2_login_1779569191.png
+2026-05-24 02:16:34,156 [INFO] Tap [mobile] at pixel (1142,465)
+2026-05-24 02:16:36,803 [INFO] Keyboard shown: False
+2026-05-24 02:16:40,589 [INFO] Typed '9000000002' into [mobile]
+2026-05-24 02:16:41,591 [INFO] Tap [OK] at pixel (2166,442)
+2026-05-24 02:16:42,246 [INFO] Tap [CONFIRM] at pixel (1203,694)
+2026-05-24 02:16:42,910 [INFO] Waiting for: post login
+2026-05-24 02:16:50,911 [INFO] EXISTING USER FLOW
+2026-05-24 02:16:50,912 [INFO] Select Profile
+2026-05-24 02:16:50,912 [INFO] Waiting 3s — profile screen
+2026-05-24 02:16:57,743 [INFO] Screenshot: screenshots/u2_profile_1779569213.png
+2026-05-24 02:16:57,744 [INFO] Tap [profile] at pixel (1111,517)
+2026-05-24 02:16:59,451 [INFO] Tap [NEXT] at pixel (1120,891)
+2026-05-24 02:17:02,126 [INFO] Avatar
+2026-05-24 02:17:02,127 [INFO] Waiting 3s — avatar screen
+2026-05-24 02:17:08,012 [INFO] Screenshot: screenshots/u2_avatar_1779569225.png
+2026-05-24 02:17:08,012 [INFO] Tap [SAVE] at pixel (1158,670)
+2026-05-24 02:17:10,688 [INFO] Language
+2026-05-24 02:17:10,689 [INFO] Waiting 3s — language
+2026-05-24 02:17:13,689 [INFO] Tap [dropdown] at pixel (1692,323)
+2026-05-24 02:17:14,366 [INFO] Tap [language option] at pixel (1186,441)
+2026-05-24 02:17:15,047 [INFO] Tap [SAVE] at pixel (1177,905)
+2026-05-24 02:17:17,703 [INFO] Handling popups
+2026-05-24 02:17:20,872 [INFO] Screenshot: screenshots/u2_popup_0_1779569237.png
+2026-05-24 02:17:20,872 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:17:21,545 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:17:22,214 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:17:22,893 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:17:29,183 [INFO] Screenshot: screenshots/u2_popup_1_1779569245.png
+2026-05-24 02:17:29,183 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:17:29,864 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:17:30,523 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:17:31,189 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:17:35,540 [INFO] Screenshot: screenshots/u2_popup_2_1779569253.png
+2026-05-24 02:17:35,540 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:17:36,173 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:17:36,800 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:17:37,433 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:17:41,619 [INFO] Screenshot: screenshots/u2_popup_3_1779569260.png
+2026-05-24 02:17:41,619 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:17:42,300 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:17:42,959 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:17:43,614 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:17:46,273 [INFO] OK | 9000000002 | PASS
+2026-05-24 02:17:46,274 [INFO] ALL USERS COMPLETED
+2026-05-24 02:17:46,276 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 02:17:46,612 [INFO] Session closed

@@ -1,0 +1,37 @@
+2026-05-24 02:28:27,502 [INFO] Connecting to Appium...
+2026-05-24 02:28:40,677 [INFO] App launched — screen 2400x1080
+2026-05-24 02:28:40,679 [INFO] Total users: 2
+2026-05-24 02:28:40,680 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 02:28:40,698 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 02:28:40,699 [INFO] Step 1: Login
+2026-05-24 02:28:40,699 [INFO] Waiting 5s — login screen
+2026-05-24 02:28:48,312 [INFO] Screenshot: screenshots/u1_login_1779569925.png
+2026-05-24 02:28:48,312 [INFO] Tap [mobile] at pixel (1142,465)
+2026-05-24 02:28:51,034 [INFO] Keyboard shown: False
+2026-05-24 02:28:54,591 [INFO] Typed '8247282471' into [mobile]
+2026-05-24 02:28:55,592 [INFO] Tap [OK] at pixel (2166,442)
+2026-05-24 02:28:56,249 [INFO] Tap [CONFIRM] at pixel (1203,694)
+2026-05-24 02:28:56,932 [INFO] Waiting for: post login
+2026-05-24 02:29:04,933 [INFO] EXISTING USER FLOW
+2026-05-24 02:29:04,934 [INFO] Select Profile
+2026-05-24 02:29:04,934 [INFO] Waiting 3s — profile screen
+2026-05-24 02:29:12,063 [INFO] Screenshot: screenshots/u1_profile_1779569947.png
+2026-05-24 02:29:12,063 [INFO] Tap [profile] at pixel (802,581)
+2026-05-24 02:29:13,736 [INFO] Tap [NEXT] at pixel (1120,891)
+2026-05-24 02:29:16,430 [INFO] Avatar
+2026-05-24 02:29:16,431 [INFO] Waiting 3s — avatar screen
+2026-05-24 02:29:21,970 [INFO] Screenshot: screenshots/u1_avatar_1779569959.png
+2026-05-24 02:29:21,971 [INFO] Tap [SAVE] at pixel (1158,670)
+2026-05-24 02:29:24,649 [INFO] Language
+2026-05-24 02:29:24,649 [INFO] Waiting 3s — language
+2026-05-24 02:29:27,651 [INFO] Tap [dropdown] at pixel (1692,323)
+2026-05-24 02:29:28,318 [INFO] Tap [language option] at pixel (1186,441)
+2026-05-24 02:29:28,991 [INFO] Tap [SAVE] at pixel (1177,905)
+2026-05-24 02:29:31,680 [INFO] Handling popups
+2026-05-24 02:29:34,417 [INFO] Screenshot: screenshots/u1_popup_0_1779569971.png
+2026-05-24 02:29:34,417 [INFO] Tap [skip] at pixel (1992,938)
+2026-05-24 02:29:35,103 [INFO] Tap [close streak] at pixel (2273,117)
+2026-05-24 02:29:35,766 [INFO] Tap [continue] at pixel (1191,877)
+2026-05-24 02:29:36,444 [INFO] Tap [later] at pixel (1425,717)
+2026-05-24 02:29:38,479 [INFO] Session closed

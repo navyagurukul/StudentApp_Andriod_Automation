@@ -1,0 +1,72 @@
+2026-05-24 03:06:24,938 [INFO] Connecting to Appium...
+2026-05-24 03:06:37,823 [INFO] App launched — screen 2400x1080
+2026-05-24 03:06:37,825 [INFO] Total users: 1
+2026-05-24 03:06:37,826 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 03:06:37,845 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 03:06:37,846 [INFO] STEP 1: LOGIN
+2026-05-24 03:06:37,846 [INFO] Waiting 3s — login screen
+2026-05-24 03:06:42,721 [INFO] Screenshot: screenshots/u1_login_1779572200.png
+2026-05-24 03:06:42,722 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 03:06:47,308 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 03:06:47,334 [INFO] Tap [OK] at (2166,442)
+2026-05-24 03:06:48,016 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 03:06:48,685 [INFO] VALIDATING SCREEN: post_login
+2026-05-24 03:06:48,686 [INFO] Checking screen: post_login
+2026-05-24 03:06:48,686 [INFO] SINGLE PROFILE AUTO LOGIN
+2026-05-24 03:06:48,686 [INFO] VALIDATING SCREEN: home_screen
+2026-05-24 03:06:48,686 [INFO] Checking screen: home_screen
+2026-05-24 03:06:48,687 [INFO] POPUPS HANDLING
+2026-05-24 03:06:48,687 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:06:49,367 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:06:50,029 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:06:50,700 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:06:52,364 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:06:53,050 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:06:53,842 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:06:54,526 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:06:56,194 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:06:56,867 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:06:57,573 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:06:58,220 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:06:59,869 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:00,531 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:01,193 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:01,852 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:03,534 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:04,216 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:04,899 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:05,577 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:07,240 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:07,896 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:08,585 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:09,251 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:10,909 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:11,568 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:12,221 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:12,885 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:14,562 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:15,222 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:15,870 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:16,650 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:18,317 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:18,995 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:19,667 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:20,334 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:21,997 [INFO] Tap [skip] at (1992,938)
+2026-05-24 03:07:22,659 [INFO] Tap [close] at (2273,117)
+2026-05-24 03:07:23,379 [INFO] Tap [continue] at (1191,877)
+2026-05-24 03:07:24,143 [INFO] Tap [later] at (1425,717)
+2026-05-24 03:07:29,262 [INFO] Screenshot: screenshots/u1_home_1779572245.png
+2026-05-24 03:07:29,263 [INFO] VALIDATING SCREEN: home_screen
+2026-05-24 03:07:29,264 [INFO] Checking screen: home_screen
+2026-05-24 03:07:29,264 [INFO] VALIDATING SCREEN: home_screen
+2026-05-24 03:07:29,264 [INFO] Checking screen: home_screen
+2026-05-24 03:07:29,265 [INFO] Tap [parents] at (323,108)
+2026-05-24 03:07:33,007 [INFO] Tap [LOGOUT] at (2236,103)
+2026-05-24 03:07:39,253 [INFO] Screenshot: screenshots/u1_logout_1779572256.png
+2026-05-24 03:07:39,254 [INFO] OK | 8247282471 | Logout done
+2026-05-24 03:07:39,255 [INFO] OK | 8247282471 | PASS
+2026-05-24 03:07:39,255 [INFO] ALL USERS COMPLETED
+2026-05-24 03:07:39,256 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 03:07:39,621 [INFO] Session closed

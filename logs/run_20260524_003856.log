@@ -1,0 +1,20 @@
+2026-05-24 00:38:56,816 [INFO] Connecting to Appium...
+2026-05-24 00:39:17,442 [INFO] App launched — screen 1080x2400
+2026-05-24 00:39:17,484 [INFO] Total users: 2
+2026-05-24 00:39:17,486 [INFO] 
+=======================================================
+USER 1/2: 8247282471
+=======================================================
+2026-05-24 00:39:17,537 [INFO] Screen size detected: 1080 x 2400
+2026-05-24 00:39:17,539 [INFO] --- Step 1: Login ---
+2026-05-24 00:39:17,540 [INFO] Waiting 6s — splash → login screen
+2026-05-24 00:39:25,513 [INFO] Screenshot: screenshots/u1_01_login_1779563363.png
+2026-05-24 00:39:25,514 [INFO] Tap [mobile input] at pixel (1142,465)
+2026-05-24 00:39:28,232 [INFO] Keyboard shown: False
+2026-05-24 00:39:33,636 [INFO] Typed '8247282471' into [mobile input]
+2026-05-24 00:39:35,137 [INFO] Tap [Confirm button] at pixel (1203,694)
+2026-05-24 00:39:38,716 [INFO] Screenshot: screenshots/u1_02_after_confirm_1779563375.png
+2026-05-24 00:39:38,746 [INFO] OK | 8247282471 | Step 1: Login confirmed
+2026-05-24 00:39:38,746 [INFO] --- Step 2: Waiting for screen after login ---
+2026-05-24 00:39:38,747 [INFO] Waiting 12s — API response + screen load
+2026-05-24 00:39:47,528 [INFO] Session closed

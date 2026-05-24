@@ -1,0 +1,132 @@
+2026-05-23 22:11:10,733 [INFO] Connecting to Appium...
+2026-05-23 22:11:22,618 [INFO] App launched — screen 2400x1080
+2026-05-23 22:11:22,622 [INFO] Total users: 2
+2026-05-23 22:11:22,623 [INFO] 
+=======================================================
+USER 1/2: 9000000001
+=======================================================
+2026-05-23 22:11:22,652 [INFO] --- Step 1: Login ---
+2026-05-23 22:11:22,653 [INFO] Waiting 6s — splash → login screen
+2026-05-23 22:11:31,020 [INFO] Screenshot: screenshots/u1_01_login_1779554488.png
+2026-05-23 22:11:31,023 [INFO] Tap [mobile input] at (49.83%, 48.52%) = pixel (1195,524)
+2026-05-23 22:11:34,476 [INFO] Typed '9000000001' into [mobile input]
+2026-05-23 22:11:35,978 [INFO] Tap [Confirm button] at (49.83%, 52.73%) = pixel (1195,569)
+2026-05-23 22:11:38,477 [INFO] Screenshot: screenshots/u1_02_after_confirm_1779554496.png
+2026-05-23 22:11:38,480 [INFO] OK | 9000000001 | Step 1: Login confirmed
+2026-05-23 22:11:38,481 [INFO] --- Step 2: Waiting for screen after login ---
+2026-05-23 22:11:38,482 [INFO] Waiting 12s — API response + screen load
+2026-05-23 22:11:54,497 [INFO] Screenshot: screenshots/u1_03_post_login_screen_1779554510.png
+2026-05-23 22:11:54,498 [INFO] Handling: Select Profile
+2026-05-23 22:11:54,498 [INFO] Waiting 3s — select profile screen
+2026-05-23 22:12:01,384 [INFO] Screenshot: screenshots/u1_04_select_profile_1779554517.png
+2026-05-23 22:12:01,388 [INFO] Tap [profile 1] at (33.68%, 51.17%) = pixel (808,552)
+2026-05-23 22:12:02,638 [INFO] Tap [NEXT button] at (48.09%, 54.53%) = pixel (1154,588)
+2026-05-23 22:12:08,140 [INFO] Screenshot: screenshots/u1_05_after_next_1779554526.png
+2026-05-23 22:12:08,143 [INFO] OK | 9000000001 | Step 2: Profile selected
+2026-05-23 22:12:08,143 [INFO] Handling: Avatar screen
+2026-05-23 22:12:08,144 [INFO] Waiting 4s — avatar screen
+2026-05-23 22:12:15,613 [INFO] Screenshot: screenshots/u1_06_avatar_1779554532.png
+2026-05-23 22:12:15,614 [INFO] Tap [Avatar Save] at (48.44%, 52.42%) = pixel (1162,566)
+2026-05-23 22:12:20,209 [INFO] Screenshot: screenshots/u1_07_after_avatar_1779554538.png
+2026-05-23 22:12:20,211 [INFO] OK | 9000000001 | Step 3: Avatar saved
+2026-05-23 22:12:20,215 [INFO] Handling: Language dialog
+2026-05-23 22:12:20,218 [INFO] Waiting 5s — language dialog
+2026-05-23 22:12:28,611 [INFO] Screenshot: screenshots/u1_08_language_1779554545.png
+2026-05-23 22:12:28,611 [INFO] Tap [language dropdown] at (49.83%, 45.94%) = pixel (1195,496)
+2026-05-23 22:12:33,211 [INFO] Screenshot: screenshots/u1_09_lang_dropdown_open_1779554550.png
+2026-05-23 22:12:33,212 [INFO] Tap [language option 0] at (49.83%, 47.97%) = pixel (1195,518)
+2026-05-23 22:12:34,638 [INFO] Tap [language Save] at (49.83%, 56.87%) = pixel (1195,614)
+2026-05-23 22:12:40,156 [INFO] Screenshot: screenshots/u1_10_after_language_1779554558.png
+2026-05-23 22:12:40,159 [INFO] OK | 9000000001 | Step 4: Language selected
+2026-05-23 22:12:40,160 [INFO] --- Step 3: Handling post-login popups ---
+2026-05-23 22:12:40,161 [INFO] Popup check: Enter button
+2026-05-23 22:12:40,161 [INFO] Waiting 6s — Begin scene
+2026-05-23 22:12:48,062 [INFO] Screenshot: screenshots/u1_11_begin_scene_1779554566.png
+2026-05-23 22:12:48,062 [INFO] Tap [Enter button] at (50.00%, 41.80%) = pixel (1200,451)
+2026-05-23 22:12:48,517 [INFO] Waiting 8s — loading after Enter
+2026-05-23 22:12:58,852 [INFO] Screenshot: screenshots/u1_12_after_enter_1779554576.png
+2026-05-23 22:12:58,853 [INFO] Popup check: Welcome Back
+2026-05-23 22:13:03,908 [INFO] Screenshot: screenshots/u1_13_welcome_back_check_1779554581.png
+2026-05-23 22:13:03,909 [INFO] Tap [Welcome Back Continue] at (49.83%, 56.56%) = pixel (1195,610)
+2026-05-23 22:13:06,573 [INFO] Popup check: Streak
+2026-05-23 22:13:10,596 [INFO] Screenshot: screenshots/u1_14_streak_check_1779554588.png
+2026-05-23 22:13:10,597 [INFO] Tap [Streak X close] at (95.31%, 42.03%) = pixel (2287,453)
+2026-05-23 22:13:13,020 [INFO] Popup check: Test popup
+2026-05-23 22:13:17,101 [INFO] Screenshot: screenshots/u1_15_test_popup_check_1779554595.png
+2026-05-23 22:13:17,102 [INFO] Tap [Test Later] at (59.38%, 53.28%) = pixel (1425,575)
+2026-05-23 22:13:21,430 [INFO] Screenshot: screenshots/u1_16_home_screen_1779554599.png
+2026-05-23 22:13:21,440 [INFO] OK | 9000000001 | Step 5: Popups handled, home screen reached
+2026-05-23 22:13:21,444 [INFO] --- Step 4: Logout ---
+2026-05-23 22:13:24,446 [INFO] Tap [parents icon (home screen)] at (13.37%, 41.72%) = pixel (320,450)
+2026-05-23 22:13:31,447 [INFO] Screenshot: screenshots/u1_17_parents_corner_1779554608.png
+2026-05-23 22:13:31,448 [INFO] Tap [LOGOUT button (top-right)] at (94.44%, 41.72%) = pixel (2266,450)
+2026-05-23 22:13:37,673 [INFO] Screenshot: screenshots/u1_18_after_logout_1779554615.png
+2026-05-23 22:13:37,677 [INFO] OK | 9000000001 | Step 6: Logout done
+2026-05-23 22:13:37,681 [INFO] OK | 9000000001 | All steps passed
+2026-05-23 22:13:37,682 [INFO] Restarting app...
+2026-05-23 22:13:47,142 [INFO] App restarted
+2026-05-23 22:13:47,142 [INFO] 
+=======================================================
+USER 2/2: 9000000002
+=======================================================
+2026-05-23 22:13:47,244 [INFO] --- Step 1: Login ---
+2026-05-23 22:13:47,245 [INFO] Waiting 6s — splash → login screen
+2026-05-23 22:13:55,394 [INFO] Screenshot: screenshots/u2_01_login_1779554633.png
+2026-05-23 22:13:55,395 [INFO] Tap [mobile input] at (49.83%, 48.52%) = pixel (1195,524)
+2026-05-23 22:13:58,072 [INFO] Typed '9000000002' into [mobile input]
+2026-05-23 22:13:59,573 [INFO] Tap [Confirm button] at (49.83%, 52.73%) = pixel (1195,569)
+2026-05-23 22:14:03,025 [INFO] Screenshot: screenshots/u2_02_after_confirm_1779554640.png
+2026-05-23 22:14:03,028 [INFO] OK | 9000000002 | Step 1: Login confirmed
+2026-05-23 22:14:03,031 [INFO] --- Step 2: Waiting for screen after login ---
+2026-05-23 22:14:03,032 [INFO] Waiting 12s — API response + screen load
+2026-05-23 22:14:17,845 [INFO] Screenshot: screenshots/u2_03_post_login_screen_1779554655.png
+2026-05-23 22:14:17,849 [INFO] Handling: Select Profile
+2026-05-23 22:14:17,849 [INFO] Waiting 3s — select profile screen
+2026-05-23 22:14:23,538 [INFO] Screenshot: screenshots/u2_04_select_profile_1779554660.png
+2026-05-23 22:14:23,538 [INFO] Tap [profile 2] at (48.26%, 51.17%) = pixel (1158,552)
+2026-05-23 22:14:24,753 [INFO] Tap [NEXT button] at (48.09%, 54.53%) = pixel (1154,588)
+2026-05-23 22:14:30,881 [INFO] Screenshot: screenshots/u2_05_after_next_1779554668.png
+2026-05-23 22:14:30,883 [INFO] OK | 9000000002 | Step 2: Profile selected
+2026-05-23 22:14:30,884 [INFO] Handling: Avatar screen
+2026-05-23 22:14:30,884 [INFO] Waiting 4s — avatar screen
+2026-05-23 22:14:37,259 [INFO] Screenshot: screenshots/u2_06_avatar_1779554674.png
+2026-05-23 22:14:37,259 [INFO] Tap [Avatar Save] at (48.44%, 52.42%) = pixel (1162,566)
+2026-05-23 22:14:42,031 [INFO] Screenshot: screenshots/u2_07_after_avatar_1779554679.png
+2026-05-23 22:14:42,038 [INFO] OK | 9000000002 | Step 3: Avatar saved
+2026-05-23 22:14:42,038 [INFO] Handling: Language dialog
+2026-05-23 22:14:42,039 [INFO] Waiting 5s — language dialog
+2026-05-23 22:14:49,400 [INFO] Screenshot: screenshots/u2_08_language_1779554687.png
+2026-05-23 22:14:49,400 [INFO] Tap [language dropdown] at (49.83%, 45.94%) = pixel (1195,496)
+2026-05-23 22:14:53,898 [INFO] Screenshot: screenshots/u2_09_lang_dropdown_open_1779554691.png
+2026-05-23 22:14:53,899 [INFO] Tap [language option 0] at (49.83%, 47.97%) = pixel (1195,518)
+2026-05-23 22:14:55,318 [INFO] Tap [language Save] at (49.83%, 56.87%) = pixel (1195,614)
+2026-05-23 22:15:01,055 [INFO] Screenshot: screenshots/u2_10_after_language_1779554698.png
+2026-05-23 22:15:01,057 [INFO] OK | 9000000002 | Step 4: Language selected
+2026-05-23 22:15:01,057 [INFO] --- Step 3: Handling post-login popups ---
+2026-05-23 22:15:01,058 [INFO] Popup check: Enter button
+2026-05-23 22:15:01,058 [INFO] Waiting 6s — Begin scene
+2026-05-23 22:15:09,410 [INFO] Screenshot: screenshots/u2_11_begin_scene_1779554707.png
+2026-05-23 22:15:09,410 [INFO] Tap [Enter button] at (50.00%, 41.80%) = pixel (1200,451)
+2026-05-23 22:15:09,828 [INFO] Waiting 8s — loading after Enter
+2026-05-23 22:15:20,078 [INFO] Screenshot: screenshots/u2_12_after_enter_1779554717.png
+2026-05-23 22:15:20,079 [INFO] Popup check: Welcome Back
+2026-05-23 22:15:25,360 [INFO] Screenshot: screenshots/u2_13_welcome_back_check_1779554723.png
+2026-05-23 22:15:25,369 [INFO] Tap [Welcome Back Continue] at (49.83%, 56.56%) = pixel (1195,610)
+2026-05-23 22:15:27,791 [INFO] Popup check: Streak
+2026-05-23 22:15:32,478 [INFO] Screenshot: screenshots/u2_14_streak_check_1779554729.png
+2026-05-23 22:15:32,484 [INFO] Tap [Streak X close] at (95.31%, 42.03%) = pixel (2287,453)
+2026-05-23 22:15:34,904 [INFO] Popup check: Test popup
+2026-05-23 22:15:39,344 [INFO] Screenshot: screenshots/u2_15_test_popup_check_1779554736.png
+2026-05-23 22:15:39,345 [INFO] Tap [Test Later] at (59.38%, 53.28%) = pixel (1425,575)
+2026-05-23 22:15:44,270 [INFO] Screenshot: screenshots/u2_16_home_screen_1779554741.png
+2026-05-23 22:15:44,271 [INFO] OK | 9000000002 | Step 5: Popups handled, home screen reached
+2026-05-23 22:15:44,272 [INFO] --- Step 4: Logout ---
+2026-05-23 22:15:47,273 [INFO] Tap [parents icon (home screen)] at (13.37%, 41.72%) = pixel (320,450)
+2026-05-23 22:15:54,135 [INFO] Screenshot: screenshots/u2_17_parents_corner_1779554751.png
+2026-05-23 22:15:54,136 [INFO] Tap [LOGOUT button (top-right)] at (94.44%, 41.72%) = pixel (2266,450)
+2026-05-23 22:16:00,864 [INFO] Screenshot: screenshots/u2_18_after_logout_1779554758.png
+2026-05-23 22:16:00,866 [INFO] OK | 9000000002 | Step 6: Logout done
+2026-05-23 22:16:00,867 [INFO] OK | 9000000002 | All steps passed
+2026-05-23 22:16:00,868 [INFO] All users done. See logs/results.jsonl
+2026-05-23 22:16:00,869 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-23 22:16:01,409 [INFO] Session closed

@@ -1,0 +1,29 @@
+2026-05-24 06:34:27,639 [INFO] Connecting to Appium...
+2026-05-24 06:34:43,407 [INFO] App launched — screen 2400x1080
+2026-05-24 06:34:43,411 [INFO] Total users: 1
+2026-05-24 06:34:43,413 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 06:34:43,453 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 06:34:43,455 [INFO] ===== HANDLING PERMISSIONS =====
+2026-05-24 06:35:01,529 [INFO] STEP 1: LOGIN
+2026-05-24 06:35:01,531 [INFO] VALIDATING SCREEN: login_screen
+2026-05-24 06:35:01,532 [INFO] 🔍 Looking for screen: login_screen
+2026-05-24 06:35:08,961 [INFO] Current screen detected: login_screen
+2026-05-24 06:35:08,963 [INFO] ✅ Screen detected: login_screen
+2026-05-24 06:35:11,441 [INFO] Screenshot: screenshots/u1_login_1779584708.png
+2026-05-24 06:35:11,441 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 06:35:20,945 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 06:35:21,948 [INFO] Tap [OK] at (2166,442)
+2026-05-24 06:35:23,037 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 06:35:24,072 [INFO] WAITING FOR NEXT SCREEN...
+2026-05-24 06:35:31,826 [INFO] Current screen: login_screen
+2026-05-24 06:35:41,587 [INFO] Current screen: login_screen
+2026-05-24 06:35:50,597 [INFO] Current screen: login_screen
+2026-05-24 06:35:59,726 [INFO] Current screen: login_screen
+2026-05-24 06:36:09,243 [INFO] Current screen: login_screen
+2026-05-24 06:36:10,246 [ERROR] ❌ FAILED — 8247282471: None of expected screens appeared: ['license_screen', 'Select_Profile_screen', 'begin_scene', 'home_screen']
+2026-05-24 06:36:12,846 [INFO] Screenshot: screenshots/FAILED_u1_8247282471_1779584770.png
+2026-05-24 06:36:12,850 [INFO] FAIL | 8247282471 | None of expected screens appeared: ['license_screen', 'Select_Profile_screen', 'begin_scene', 'home_screen']
+2026-05-24 06:36:12,850 [INFO] ALL USERS COMPLETED
+2026-05-24 06:36:12,857 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 06:36:13,310 [INFO] Session closed

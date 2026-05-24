@@ -1,0 +1,24 @@
+2026-05-24 06:04:25,069 [INFO] Connecting to Appium...
+2026-05-24 06:04:39,378 [INFO] App launched — screen 1080x2400
+2026-05-24 06:04:39,379 [INFO] Total users: 1
+2026-05-24 06:04:39,379 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 06:04:39,397 [INFO] Screen size detected: 1080 x 2400
+2026-05-24 06:04:39,397 [INFO] ===== HANDLING PERMISSIONS =====
+2026-05-24 06:04:58,088 [INFO] STEP 1: LOGIN
+2026-05-24 06:04:58,089 [INFO] VALIDATING SCREEN: login_screen
+2026-05-24 06:04:58,089 [INFO] 🔍 Looking for screen: login_screen
+2026-05-24 06:05:02,323 [INFO] Current screen detected: login_screen
+2026-05-24 06:05:02,356 [INFO] ✅ Screen detected: login_screen
+2026-05-24 06:05:04,437 [INFO] Screenshot: screenshots/u1_login_1779582902.png
+2026-05-24 06:05:04,437 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 06:05:10,740 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 06:05:11,741 [INFO] Tap [OK] at (2166,442)
+2026-05-24 06:05:12,706 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 06:05:13,674 [INFO] Waiting 1s — allow UI to process
+2026-05-24 06:05:14,675 [INFO] WAITING FOR NEXT SCREEN...
+2026-05-24 06:05:17,410 [INFO] Current screen: login_screen
+2026-05-24 06:05:20,867 [INFO] Current screen: login_screen
+2026-05-24 06:05:24,555 [INFO] Current screen: login_screen
+2026-05-24 06:05:28,044 [INFO] Current screen: login_screen
+2026-05-24 06:05:32,328 [INFO] Session closed

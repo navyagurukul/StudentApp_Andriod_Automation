@@ -1,0 +1,86 @@
+2026-05-24 00:39:53,683 [INFO] Connecting to Appium...
+2026-05-24 00:40:04,690 [INFO] App launched — screen 2400x1080
+2026-05-24 00:40:04,691 [INFO] Total users: 2
+2026-05-24 00:40:04,692 [INFO] 
+=======================================================
+USER 1/2: 8247282471
+=======================================================
+2026-05-24 00:40:04,718 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 00:40:04,718 [INFO] --- Step 1: Login ---
+2026-05-24 00:40:04,718 [INFO] Waiting 6s — splash → login screen
+2026-05-24 00:40:13,300 [INFO] Screenshot: screenshots/u1_01_login_1779563410.png
+2026-05-24 00:40:13,457 [INFO] Tap [mobile input] at pixel (1142,465)
+2026-05-24 00:40:15,801 [INFO] Keyboard shown: True
+2026-05-24 00:40:19,469 [INFO] Typed '8247282471' into [mobile input]
+2026-05-24 00:40:20,970 [INFO] Tap [Confirm button] at pixel (1203,694)
+2026-05-24 00:40:23,795 [INFO] Screenshot: screenshots/u1_02_after_confirm_1779563421.png
+2026-05-24 00:40:23,796 [INFO] OK | 8247282471 | Step 1: Login confirmed
+2026-05-24 00:40:23,797 [INFO] --- Step 2: Waiting for screen after login ---
+2026-05-24 00:40:23,797 [INFO] Waiting 12s — API response + screen load
+2026-05-24 00:40:38,195 [INFO] Screenshot: screenshots/u1_03_post_login_screen_1779563435.png
+2026-05-24 00:40:38,195 [INFO] Handling: Select Profile
+2026-05-24 00:40:38,195 [INFO] Waiting 3s — select profile screen
+2026-05-24 00:40:43,705 [INFO] Screenshot: screenshots/u1_04_select_profile_1779563441.png
+2026-05-24 00:40:43,705 [INFO] Tap [profile 1] at pixel (806,577)
+2026-05-24 00:40:45,165 [INFO] Tap [NEXT button] at pixel (0.4809,0.5453)
+2026-05-24 00:40:51,294 [INFO] Screenshot: screenshots/u1_05_after_next_1779563448.png
+2026-05-24 00:40:51,295 [INFO] OK | 8247282471 | Step 2: Profile selected
+2026-05-24 00:40:51,296 [INFO] Handling: Avatar screen
+2026-05-24 00:40:51,296 [INFO] Waiting 4s — avatar screen
+2026-05-24 00:40:57,713 [INFO] Screenshot: screenshots/u1_06_avatar_1779563455.png
+2026-05-24 00:40:57,713 [INFO] Tap [Avatar Save] at pixel (526,677)
+2026-05-24 00:41:03,015 [INFO] Screenshot: screenshots/u1_07_after_avatar_1779563460.png
+2026-05-24 00:41:03,016 [INFO] OK | 8247282471 | Step 3: Avatar saved
+2026-05-24 00:41:03,017 [INFO] Handling: Language dialog
+2026-05-24 00:41:03,017 [INFO] Waiting 5s — language dialog
+2026-05-24 00:41:10,736 [INFO] Screenshot: screenshots/u1_08_language_1779563468.png
+2026-05-24 00:41:10,736 [INFO] Tap [language dropdown] at pixel (765,319)
+2026-05-24 00:41:15,006 [INFO] Screenshot: screenshots/u1_09_lang_dropdown_open_1779563472.png
+2026-05-24 00:41:15,007 [INFO] Tap [language option 0] at pixel (590,420)
+2026-05-24 00:41:16,682 [INFO] Tap [language Save] at pixel (528,896)
+2026-05-24 00:41:22,681 [INFO] Screenshot: screenshots/u1_10_after_language_1779563480.png
+2026-05-24 00:41:22,682 [INFO] OK | 8247282471 | Step 4: Language selected
+2026-05-24 00:41:22,682 [INFO] --- Step 3: Handling post-login popups ---
+2026-05-24 00:41:22,683 [INFO] Popup check: Enter button
+2026-05-24 00:41:22,683 [INFO] Waiting 6s — Begin scene
+2026-05-24 00:41:30,736 [INFO] Screenshot: screenshots/u1_11_begin_scene_1779563488.png
+2026-05-24 00:41:30,737 [INFO] Tap [Enter button] at pixel (532,577)
+2026-05-24 00:41:31,393 [INFO] Waiting 8s — loading after Enter
+2026-05-24 00:41:41,584 [INFO] Screenshot: screenshots/u1_12_after_enter_1779563499.png
+2026-05-24 00:41:41,584 [INFO] Popup check: Welcome Back
+2026-05-24 00:41:46,599 [INFO] Screenshot: screenshots/u1_13_welcome_back_check_1779563504.png
+2026-05-24 00:41:46,599 [INFO] Tap [Welcome Back Continue] at pixel (552,877)
+2026-05-24 00:41:49,285 [INFO] Popup check: Streak
+2026-05-24 00:41:53,339 [INFO] Screenshot: screenshots/u1_14_streak_check_1779563511.png
+2026-05-24 00:41:53,339 [INFO] Tap [Streak X close] at pixel (1054,61)
+2026-05-24 00:41:56,017 [INFO] Popup check: Test popup
+2026-05-24 00:42:00,012 [INFO] Screenshot: screenshots/u1_15_test_popup_check_1779563518.png
+2026-05-24 00:42:00,012 [INFO] Tap [Test Later] at pixel (638,708)
+2026-05-24 00:42:04,830 [INFO] Screenshot: screenshots/u1_16_home_screen_1779563522.png
+2026-05-24 00:42:04,831 [INFO] OK | 8247282471 | Step 5: Popups handled, home screen reached
+2026-05-24 00:42:04,832 [INFO] --- Step 4: Logout ---
+2026-05-24 00:42:07,833 [INFO] Tap [parents icon (home screen)] at pixel (144,98)
+2026-05-24 00:42:14,949 [INFO] Screenshot: screenshots/u1_17_parents_corner_1779563532.png
+2026-05-24 00:42:14,950 [INFO] Tap [LOGOUT button (top-right)] at pixel (1003,98)
+2026-05-24 00:42:21,717 [INFO] Screenshot: screenshots/u1_18_after_logout_1779563539.png
+2026-05-24 00:42:21,718 [INFO] OK | 8247282471 | Step 6: Logout done
+2026-05-24 00:42:21,719 [INFO] OK | 8247282471 | All steps passed
+2026-05-24 00:42:21,720 [INFO] Restarting app...
+2026-05-24 00:42:30,988 [INFO] App restarted
+2026-05-24 00:42:30,989 [INFO] 
+=======================================================
+USER 2/2: 9000000002
+=======================================================
+2026-05-24 00:42:31,057 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 00:42:31,058 [INFO] --- Step 1: Login ---
+2026-05-24 00:42:31,058 [INFO] Waiting 6s — splash → login screen
+2026-05-24 00:42:41,346 [INFO] Screenshot: screenshots/u2_01_login_1779563557.png
+2026-05-24 00:42:41,347 [INFO] Tap [mobile input] at pixel (1142,465)
+2026-05-24 00:42:44,079 [INFO] Keyboard shown: False
+2026-05-24 00:42:47,864 [INFO] Typed '9000000002' into [mobile input]
+2026-05-24 00:42:49,367 [INFO] Tap [Confirm button] at pixel (1203,694)
+2026-05-24 00:42:53,756 [INFO] Screenshot: screenshots/u2_02_after_confirm_1779563570.png
+2026-05-24 00:42:53,758 [INFO] OK | 9000000002 | Step 1: Login confirmed
+2026-05-24 00:42:53,758 [INFO] --- Step 2: Waiting for screen after login ---
+2026-05-24 00:42:53,759 [INFO] Waiting 12s — API response + screen load
+2026-05-24 00:42:57,347 [INFO] Session closed

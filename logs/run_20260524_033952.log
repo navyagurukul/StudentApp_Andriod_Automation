@@ -1,0 +1,25 @@
+2026-05-24 03:39:52,883 [INFO] Connecting to Appium...
+2026-05-24 03:40:05,076 [INFO] App launched — screen 2400x1080
+2026-05-24 03:40:05,081 [INFO] Total users: 1
+2026-05-24 03:40:05,082 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 03:40:05,117 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 03:40:05,120 [INFO] STEP 0: CHECKING PERMISSIONS
+2026-05-24 03:40:16,248 [INFO] STEP 1: LOGIN
+2026-05-24 03:40:16,249 [INFO] Waiting 3s — login screen
+2026-05-24 03:40:23,049 [INFO] Screenshot: screenshots/u1_login_1779574219.png
+2026-05-24 03:40:23,051 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 03:40:29,738 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 03:40:29,739 [INFO] Tap [OK] at (2166,442)
+2026-05-24 03:40:30,617 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 03:40:31,487 [INFO] VALIDATING SCREEN: post_login
+2026-05-24 03:40:31,488 [INFO] 🔍 Looking for screen: post_login
+2026-05-24 03:40:45,463 [ERROR] ❌ Screen NOT found: post_login (tried 10s)
+2026-05-24 03:40:49,069 [INFO] Screenshot: screenshots/FAILED_post_login_1779574245.png
+2026-05-24 03:40:51,728 [INFO] Screenshot: screenshots/FAILED_post_login_1779574249.png
+2026-05-24 03:40:51,729 [ERROR] FAILED 8247282471: ❌ Screen NOT found: post_login
+2026-05-24 03:40:54,204 [INFO] Screenshot: screenshots/FAILED_u1_8247282471_1779574251.png
+2026-05-24 03:40:54,205 [INFO] FAIL | 8247282471 | ❌ Screen NOT found: post_login
+2026-05-24 03:40:54,206 [INFO] ALL USERS COMPLETED
+2026-05-24 03:40:54,208 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 03:40:54,586 [INFO] Session closed

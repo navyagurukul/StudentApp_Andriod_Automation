@@ -1,0 +1,4 @@
+Appium-Python-Client==3.2.1
+pytest
+pytest-html
+selenium

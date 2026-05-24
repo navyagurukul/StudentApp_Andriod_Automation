@@ -1,0 +1,23 @@
+2026-05-24 02:46:42,935 [INFO] Connecting to Appium...
+2026-05-24 02:46:54,112 [INFO] App launched — screen 2400x1080
+2026-05-24 02:46:54,114 [INFO] Total users: 1
+2026-05-24 02:46:54,114 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 02:46:54,138 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 02:46:54,138 [INFO] CHECKING PERMISSIONS POPUPS
+2026-05-24 02:46:54,139 [INFO] Handling permission popups
+2026-05-24 02:46:54,140 [INFO] STEP 1: LOGIN
+2026-05-24 02:46:54,140 [INFO] Waiting 3s — login screen
+2026-05-24 02:46:59,646 [INFO] Screenshot: screenshots/u1_login_1779571017.png
+2026-05-24 02:46:59,647 [INFO] Tap [mobile] at pixel (1142,465)
+2026-05-24 02:47:01,926 [INFO] Keyboard shown: True
+2026-05-24 02:47:05,626 [INFO] Typed '8247282471' into [mobile]
+2026-05-24 02:47:05,627 [INFO] Tap [OK] at pixel (2166,442)
+2026-05-24 02:47:06,311 [INFO] Tap [CONFIRM] at pixel (1203,694)
+2026-05-24 02:47:06,975 [INFO] VALIDATING SCREEN: post_login
+2026-05-24 02:47:06,975 [ERROR] FAILED 8247282471: 'BasePage' object has no attribute 'is_screen_visible'
+2026-05-24 02:47:09,132 [INFO] Screenshot: screenshots/FAILED_u1_8247282471_1779571026.png
+2026-05-24 02:47:09,133 [INFO] FAIL | 8247282471 | 'BasePage' object has no attribute 'is_screen_visible'
+2026-05-24 02:47:09,134 [INFO] ALL USERS COMPLETED
+2026-05-24 02:47:09,134 [INFO] PASS — tests/test_login_flow.py::TestLoginFlow::test_all_users
+2026-05-24 02:47:09,418 [INFO] Session closed
