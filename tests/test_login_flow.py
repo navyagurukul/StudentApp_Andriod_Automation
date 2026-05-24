@@ -168,8 +168,10 @@ def _run_user(p: BasePage, user: dict, num: int):
     time.sleep(5)
 
     # DIRECT ASSUMPTION (THIS IS KEY FOR UNITY)
-    next_screen = user.get("expected_next", "Select_Profile_screen")
-
+    next_screen = (
+        user.get("expected_next")
+        or ("License_screen" if user.get("licenseCode") else "Select_Profile_screen")
+    )
     log.info(f"Assuming next screen: {next_screen}")
 
     # ───── FLOW HANDLING ─────

@@ -1,0 +1,13 @@
+2026-05-24 22:26:29,717 [INFO] Connecting to Appium...
+2026-05-24 22:26:42,674 [INFO] App launched — screen 2400x1080
+2026-05-24 22:26:42,674 [INFO] Total users: 1
+2026-05-24 22:26:42,674 [INFO] 
+===== USER 1: 8247282471 =====
+2026-05-24 22:26:42,694 [INFO] Screen size detected: 2400 x 1080
+2026-05-24 22:27:01,044 [INFO] STEP 1: LOGIN
+2026-05-24 22:27:01,044 [INFO] Tap [mobile] at (1142,465)
+2026-05-24 22:27:07,411 [INFO] Typed [8247282471] into [mobile]
+2026-05-24 22:27:08,412 [INFO] Tap [OK] at (2166,442)
+2026-05-24 22:27:09,569 [INFO] Tap [CONFIRM] at (1203,694)
+2026-05-24 22:27:10,748 [INFO] Waiting for Unity transition...
+2026-05-24 22:27:18,621 [INFO] Session closed
