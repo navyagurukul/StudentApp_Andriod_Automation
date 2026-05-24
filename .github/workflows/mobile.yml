@@ -230,7 +230,7 @@ jobs:
       PLATFORM_NAME: Android
       PLATFORM_VERSION: "13"
 
-      DEVICE_NAME: emulator-5554
+      DEVICE_NAME: 7245d3d80508
 
       APPIUM_SERVER: http://127.0.0.1:4723
 
