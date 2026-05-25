@@ -20,7 +20,7 @@ jobs:
   smoke-tests:
 
     name: Smoke Tests
-
+    if: github.event_name != 'pull_request' || github.event_name == 'push_request' || github.event_name == 'workflow_dispatch'
     runs-on: [self-hosted, Windows]
 
     env:
@@ -30,7 +30,7 @@ jobs:
       PLATFORM_NAME: Android
       DEVICE_NAME: 7245d3d80508
 
-      APPIUM_SERVER: http://127.0.0.1:4723
+      APPIUM_PORT: 4723
 
     steps:
 
@@ -92,9 +92,9 @@ jobs:
       # Verify Device (REAL DEVICE)
       # =====================================================
       - name: Verify Device
+        shell: powershell
         run: |
           adb devices
-          adb shell getprop ro.product.model
 
       # =====================================================
       # Kill Old Appium
@@ -139,6 +139,7 @@ jobs:
       # Run Tests
       # =====================================================
       - name: Run Smoke Tests
+        shell: powershell
         run: |
           pytest -m smoke -v -s --alluredir=allure-results
 
@@ -173,19 +174,15 @@ jobs:
   regression-tests:
 
     name: Regression Tests
-
-    runs-on: [self-hosted, Windows]
-
-    needs: smoke-tests
-
-    if: github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch'
+    if: github.event_name != 'pull_request' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/develop'
+    runs-on: [self-hosted, Windows]     
 
     env:
       APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.studentapp
       APP_ACTIVITY: io.branch.unity.BranchUnityActivity
 
       DEVICE_NAME: 7245d3d80508
-      APPIUM_SERVER: http://127.0.0.1:4723
+      APPIUM_PORT: 4723
 
     steps:
 
@@ -244,9 +241,9 @@ jobs:
       # Verify Device (REAL DEVICE)
       # =====================================================
       - name: Verify Device
+        shell: powershell
         run: |
           adb devices
-          adb shell getprop ro.product.model
 
       # =====================================================
       # Kill Old Appium
@@ -288,6 +285,7 @@ jobs:
           }
 
       - name: Run Regression Tests
+        shell: powershell
         run: |
           pytest -m regression -v -s --alluredir=allure-results
 
