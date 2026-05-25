@@ -19,6 +19,31 @@ from utils.data_loader import load_users
 from utils.permission_handler import PermissionHandler
 
 
+
+@pytest.mark.smoke
+@pytest.mark.regression
+@pytest.mark.android
+
+@pytest.mark.usefixtures("driver")
+class TestBasePage:
+
+    def test_screen_detection(self, driver: WebDriver):
+
+        p = BasePage(driver)
+
+        screen = detect_screen(p)
+
+        log.info(f"Detected screen: {screen}")
+
+        assert screen in [
+            "license_screen",
+            "Select_Profile_screen",
+            "avatar_screen",
+            "language_screen",
+            "home_screen",
+            "login_screen",
+            "unknown"
+        ], f"Unexpected screen detected: {screen}"
 # ─────────────────────────────────────────────
 # SCREEN DETECTION (FIXED FOR UNITY)
 # ─────────────────────────────────────────────
