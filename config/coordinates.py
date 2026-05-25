@@ -18,6 +18,11 @@ COORDS = {
         "confirm_button": (1203, 694),  # green "Confirm" button
     },
 
+    "license_screen": {
+        "license_input": (1108, 465),
+        "confirm_button": (1181, 582),# "Enter license code" white input box
+    },
+
     # ── Select Profile ────────────────────────────────────────────────────
     # Select_Profile.png — shows 3 profiles: Grade Tre / Blah5 / q4
     "select_profile": {

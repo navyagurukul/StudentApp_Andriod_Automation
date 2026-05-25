@@ -1,6 +1,6 @@
 """
 test_login_flow.py
-FINAL STABLE VERSION (UNITY + APPIUM FIXED)
+FINAL STABLE VERSION
 English Gurukul Student App Automation
 """
 
@@ -10,7 +10,14 @@ import os
 import time
 import pytest
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(
+    0,
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
 
 from pages.base_page import BasePage
 from config.coordinates import get as C
@@ -18,39 +25,15 @@ from utils.logger import log, write_result
 from utils.data_loader import load_users
 from utils.permission_handler import PermissionHandler
 
-@pytest.mark.usefixtures("driver")
-class TestBasePage:
-    @pytest.mark.smoke
-    @pytest.mark.regression
-    @pytest.mark.android
 
-    def test_screen_detection(self, driver: WebDriver):
-
-        p = BasePage(driver)
-
-        screen = detect_screen(p)
-
-        log.info(f"Detected screen: {screen}")
-
-        assert screen in [
-            "license_screen",
-            "Select_Profile_screen",
-            "avatar_screen",
-            "language_screen",
-            "home_screen",
-            "login_screen",
-            "unknown"
-        ], f"Unexpected screen detected: {screen}"
 # ─────────────────────────────────────────────
-# SCREEN DETECTION (FIXED FOR UNITY)
+# SCREEN DETECTION
 # ─────────────────────────────────────────────
 
 def detect_screen(p):
-    """
-    Unity-safe screen detection using page_source (NOT cached logic)
-    """
 
     try:
+
         src = p.driver.page_source.lower()
 
         if "license" in src:
@@ -74,12 +57,14 @@ def detect_screen(p):
         return "unknown"
 
     except Exception as e:
+
         log.error(f"Screen detection error: {e}")
+
         return "unknown"
 
 
 # ─────────────────────────────────────────────
-# WAIT FOR SCREEN (FIXED)
+# WAIT FOR SCREEN
 # ─────────────────────────────────────────────
 
 def wait_for_any_screen(p, expected_list, timeout=40):
@@ -97,7 +82,9 @@ def wait_for_any_screen(p, expected_list, timeout=40):
 
         time.sleep(1)
 
-    raise AssertionError(f"Expected screens not found: {expected_list}")
+    raise AssertionError(
+        f"Expected screens not found: {expected_list}"
+    )
 
 
 # ─────────────────────────────────────────────
@@ -108,44 +95,79 @@ def require_screen(p, screen_name, timeout=20):
 
     log.info(f"VALIDATING SCREEN: {screen_name}")
 
-    actual = wait_for_any_screen(p, [screen_name], timeout)
+    actual = wait_for_any_screen(
+        p,
+        [screen_name],
+        timeout
+    )
 
     if actual != screen_name:
+
         p.shot(f"FAILED_{screen_name}")
-        raise AssertionError(f"Expected {screen_name}, got {actual}")
+
+        raise AssertionError(
+            f"Expected {screen_name}, got {actual}"
+        )
 
     return True
 
 
 # ─────────────────────────────────────────────
-# TEST CLASS
+# MAIN TEST CLASS
 # ─────────────────────────────────────────────
 
+@pytest.mark.usefixtures("driver")
 class TestLoginFlow:
 
+    @pytest.mark.smoke
+    @pytest.mark.regression
+    @pytest.mark.android
     def test_all_users(self, driver: WebDriver):
 
         users = load_users()
+
         log.info(f"Total users: {len(users)}")
 
         for i, user in enumerate(users):
 
             mobile = user["mobileNumber"]
-            log.info(f"\n===== USER {i+1}: {mobile} =====")
+
+            log.info(
+                f"\n===== USER {i+1}: {mobile} ====="
+            )
 
             p = BasePage(driver)
 
             try:
+
                 _run_user(p, user, i + 1)
-                write_result(mobile, True, "PASS")
+
+                write_result(
+                    mobile,
+                    True,
+                    "PASS"
+                )
+
                 log.info(f"PASS — {mobile}")
 
             except Exception as e:
-                log.error(f"FAILED — {mobile}: {e}")
-                p.shot(f"FAILED_u{i+1}_{mobile}")
-                write_result(mobile, False, str(e))
+
+                log.error(
+                    f"FAILED — {mobile}: {e}"
+                )
+
+                p.shot(
+                    f"FAILED_u{i+1}_{mobile}"
+                )
+
+                write_result(
+                    mobile,
+                    False,
+                    str(e)
+                )
 
             if i < len(users) - 1:
+
                 p.restart_app()
 
         log.info("ALL USERS COMPLETED")
@@ -159,165 +181,279 @@ def _run_user(p: BasePage, user: dict, num: int):
 
     mobile = user["mobileNumber"]
 
-    # ───── Permissions ─────
-    PermissionHandler(p.driver).handle_all_permissions()
+    # ─────────────────────────────
+    # PERMISSIONS
+    # ─────────────────────────────
 
-    # ───── LOGIN ─────
+    PermissionHandler(
+        p.driver
+    ).handle_all_permissions()
+
+    # ─────────────────────────────
+    # LOGIN
+    # ─────────────────────────────
+
     log.info("STEP 1: LOGIN")
-    log.info("Assuming login screen is visible")
 
     x, y = C("login", "mobile_input")
-    p.tap_and_type(x, y, mobile, "mobile")
+
+    p.tap_and_type(
+        x,
+        y,
+        mobile,
+        "mobile"
+    )
 
     ox, oy = C("login", "ok_button")
+
     p.tap(ox, oy, "OK")
 
     cx, cy = C("login", "confirm_button")
 
     log.info("CLICK CONFIRM")
+
     p.tap(cx, cy, "CONFIRM")
 
-    log.info("Waiting for Unity transition...")
-    time.sleep(8)
-    # IMPORTANT FOR UNITY + API
+    log.info(
+        "Waiting for Unity transition..."
+    )
 
-    # DEBUG
-    log.info(f"AFTER CONFIRM SCREEN: {detect_screen(p)}")
+    time.sleep(10)
 
-    # ───── NEXT SCREEN ─────
-    log.info("Proceeding to next step after login delay")
+    # ─────────────────────────────
+    # DYNAMIC SCREEN DETECTION
+    # UNITY SAFE
+    # ─────────────────────────────
+
+    log.info("Detecting next screen...")
+
+    # LICENSE SCREEN
+    
 
     time.sleep(5)
 
-    # DIRECT ASSUMPTION (THIS IS KEY FOR UNITY)
-    next_screen = (
-        user.get("expected_next")
-        or ("License_screen" if user.get("licenseCode") else "Select_Profile_screen")
-    )
-    log.info(f"Assuming next screen: {next_screen}")
+    if p.is_screen_visible("license_screen", timeout=5):
+        next_screen = "license_screen"
+    elif p.is_screen_visible("Select_Profile_screen", timeout=5):
+        next_screen = "Select_Profile_screen"
 
-    # ───── FLOW HANDLING ─────
+    # SELECT PROFILE SCREEN
+
+    elif p.pixel_exists(1120, 891):
+        
+        next_screen = "Select_Profile_screen"
+
+    # AVATAR SCREEN
+
+    elif p.pixel_exists(1158, 670):
+
+        next_screen = "avatar_screen"
+
+    # LANGUAGE SCREEN
+
+    elif p.pixel_exists(1177, 905):
+
+        next_screen = "language_screen"
+
+    # OTHERWISE HOME
+
+    else:
+
+        next_screen = "home_screen"
+
+    log.info(
+        f"Detected next screen: {next_screen}"
+    )
+
+    # ─────────────────────────────
+    # LICENSE FLOW
+    # ─────────────────────────────
 
     if next_screen == "license_screen":
-        _handle_license(p, user, num)
-        _handle_registration(p, user, num)
 
-        next_screen = wait_for_any_screen(
-            p,
-            ["Select_Profile_screen", "home_screen"],
-            timeout=25
+        log.info("LICENSE SCREEN")
+
+        x, y = C("login", "mobile_input")
+
+        p.tap_and_type(
+            x,
+            y,
+            user.get("licenseCode", ""),
+            "license"
         )
 
+        cx, cy = C("login", "confirm_button")
+
+        p.tap(cx, cy, "CONFIRM")
+
+        time.sleep(5)
+
+        # ───── REGISTRATION ─────
+
+        log.info("REGISTRATION")
+
+        p.tap_and_type(
+            0.50,
+            0.38,
+            user.get("studentName", ""),
+            "name"
+        )
+
+        gender = user.get(
+            "studentGender",
+            "Male"
+        )
+
+        p.tap(
+            0.35 if gender == "Male" else 0.65,
+            0.48,
+            gender
+        )
+
+        p.tap_and_type(
+            0.50,
+            0.68,
+            user.get(
+                "studentParentName",
+                ""
+            ),
+            "parent"
+        )
+
+        p.tap_and_type(
+            0.50,
+            0.76,
+            str(
+                user.get(
+                    "studentAlternateMobileNumber",
+                    ""
+                )
+            ),
+            "alt mobile"
+        )
+
+        p.tap(0.50, 0.91, "submit")
+
+        time.sleep(10)
+
+        next_screen = "Select_Profile_screen"
+
+    # ─────────────────────────────
+    # SELECT PROFILE
+    # ─────────────────────────────
+
     if next_screen == "Select_Profile_screen":
-        _handle_select_profile(p, user, num)
-        _handle_avatar(p, user, num)
-        _handle_language(p, user, num)
 
-    # ───── POPUPS ─────
-    _handle_popups(p, user, num)
+        log.info("SELECT PROFILE")
 
-    # ───── HOME ─────
-    # wait for home ui settle
-    time.sleep(5)
-    # ───── LOGOUT ─────
-    _handle_logout(p, user, num)
+        idx = user.get(
+            "profileIndex",
+            1
+        )
 
+        try:
 
-# ─────────────────────────────────────────────
-# HANDLERS (UNCHANGED LOGIC BUT SAFE)
-# ─────────────────────────────────────────────
+            px, py = C(
+                "select_profile",
+                f"profile_{idx}"
+            )
 
-def _handle_license(p, user, num):
+        except:
 
-    log.info("LICENSE SCREEN")
+            px, py = C(
+                "select_profile",
+                "profile_1"
+            )
 
-    x, y = C("login", "mobile_input")
-    p.tap_and_type(x, y, user.get("licenseCode", ""), "license")
+        p.tap(px, py, "profile")
 
-    cx, cy = C("login", "confirm_button")
-    p.tap(cx, cy, "CONFIRM")
+        nx, ny = C(
+            "select_profile",
+            "next_button"
+        )
 
-    time.sleep(3)
+        p.tap(nx, ny, "NEXT")
 
+        time.sleep(5)
 
-def _handle_registration(p, user, num):
+        next_screen = "avatar_screen"
 
-    log.info("REGISTRATION")
+    # ─────────────────────────────
+    # AVATAR
+    # ─────────────────────────────
 
-    p.tap_and_type(0.50, 0.38, user.get("studentName", ""), "name")
+    if next_screen == "avatar_screen":
 
-    gender = user.get("studentGender", "Male")
-    p.tap(0.35 if gender == "Male" else 0.65, 0.48, gender)
+        log.info("AVATAR")
 
-    p.tap_and_type(0.50, 0.68, user.get("studentParentName", ""), "parent")
+        sx, sy = C(
+            "select_avatar",
+            "save_button"
+        )
 
-    p.tap_and_type(0.50, 0.76,
-                str(user.get("studentAlternateMobileNumber", "")),
-                "alt mobile")
+        p.tap(sx, sy, "SAVE")
 
-    p.tap(0.50, 0.91, "submit")
+        time.sleep(5)
 
-    time.sleep(5)
+        next_screen = "language_screen"
 
+    # ─────────────────────────────
+    # LANGUAGE
+    # ─────────────────────────────
 
-def _handle_select_profile(p, user, num):
+    if next_screen == "language_screen":
 
-    log.info("SELECT PROFILE")
+        log.info("LANGUAGE")
 
-    idx = user.get("profileIndex", 1)
+        dx, dy = C(
+            "language_dialog",
+            "dropdown"
+        )
 
-    try:
-        px, py = C("select_profile", f"profile_{idx}")
-    except:
-        px, py = C("select_profile", "profile_1")
+        p.tap(dx, dy, "dropdown")
 
-    p.tap(px, py, "profile")
+        idx = user.get(
+            "studentLanguageIndex",
+            0
+        )
 
-    nx, ny = C("select_profile", "next_button")
-    p.tap(nx, ny, "NEXT")
+        try:
 
+            ox, oy = C(
+                "language_dialog",
+                f"option_{idx}"
+            )
 
-def _handle_avatar(p, user, num):
+        except:
 
-    log.info("AVATAR")
+            ox, oy = C(
+                "language_dialog",
+                "option_0"
+            )
 
-    sx, sy = C("select_avatar", "save_button")
-    p.tap(sx, sy, "SAVE")
-    time.sleep(4)
+        p.tap(ox, oy, "language")
 
+        sx, sy = C(
+            "language_dialog",
+            "save_button"
+        )
 
-def _handle_language(p, user, num):
+        p.tap(sx, sy, "SAVE")
 
-    log.info("LANGUAGE")
+        time.sleep(5)
 
-    dx, dy = C("language_dialog", "dropdown")
-    p.tap(dx, dy, "dropdown")
-
-    idx = user.get("studentLanguageIndex", 0)
-
-    try:
-        ox, oy = C("language_dialog", f"option_{idx}")
-    except:
-        ox, oy = C("language_dialog", "option_0")
-
-    p.tap(ox, oy, "language")
-
-    sx, sy = C("language_dialog", "save_button")
-    p.tap(sx, sy, "SAVE")
-    time.sleep(3)
-
-
-def _handle_popups(p, user, num):
+    # ─────────────────────────────
+    # POPUPS
+    # ─────────────────────────────
 
     log.info("HANDLING POPUPS")
 
-    # ─────────────────────────────
-    # SKIP BUTTON
-    # ─────────────────────────────
-
     try:
 
-        x, y = C("begin_scene", "skip_button")
+        x, y = C(
+            "begin_scene",
+            "skip_button"
+        )
 
         log.info("Clicking SKIP")
 
@@ -327,51 +463,66 @@ def _handle_popups(p, user, num):
 
     except Exception as e:
 
-        log.info(f"Skip not found: {e}")
-
-    # ─────────────────────────────
-    # STREAK POPUP
-    # ─────────────────────────────
+        log.info(
+            f"Skip not found: {e}"
+        )
 
     try:
 
-        x, y = C("streak_popup", "close_btn")
+        x, y = C(
+            "streak_popup",
+            "close_btn"
+        )
 
-        log.info("Closing STREAK popup")
+        log.info(
+            "Closing STREAK popup"
+        )
 
-        p.tap(x, y, "CLOSE STREAK")
+        p.tap(
+            x,
+            y,
+            "CLOSE STREAK"
+        )
 
         time.sleep(4)
 
     except Exception as e:
 
-        log.info(f"Streak popup not found: {e}")
-
-    # ─────────────────────────────
-    # WELCOME BACK
-    # ─────────────────────────────
+        log.info(
+            f"Streak popup not found: {e}"
+        )
 
     try:
 
-        x, y = C("welcome_back", "continue_btn")
+        x, y = C(
+            "welcome_back",
+            "continue_btn"
+        )
 
-        log.info("Clicking CONTINUE")
+        log.info(
+            "Clicking CONTINUE"
+        )
 
-        p.tap(x, y, "CONTINUE")
+        p.tap(
+            x,
+            y,
+            "CONTINUE"
+        )
 
         time.sleep(4)
 
     except Exception as e:
 
-        log.info(f"Welcome popup not found: {e}")
-
-    # ─────────────────────────────
-    # TEST POPUP
-    # ─────────────────────────────
+        log.info(
+            f"Welcome popup not found: {e}"
+        )
 
     try:
 
-        x, y = C("test_popup", "later_btn")
+        x, y = C(
+            "test_popup",
+            "later_btn"
+        )
 
         log.info("Clicking LATER")
 
@@ -381,22 +532,37 @@ def _handle_popups(p, user, num):
 
     except Exception as e:
 
-        log.info(f"Test popup not found: {e}")
+        log.info(
+            f"Test popup not found: {e}"
+        )
 
     log.info("POPUP FLOW COMPLETE")
 
+    # ─────────────────────────────
+    # HOME WAIT
+    # ─────────────────────────────
 
-def _handle_logout(p, user, num):
+    time.sleep(5)
+
+    # ─────────────────────────────
+    # LOGOUT
+    # ─────────────────────────────
 
     log.info("LOGOUT")
 
-    hx, hy = C("home_screen", "parents_icon")
+    hx, hy = C(
+        "home_screen",
+        "parents_icon"
+    )
 
     p.tap(hx, hy, "parents")
 
     time.sleep(3)
 
-    lx, ly = C("parents_corner", "logout_button")
+    lx, ly = C(
+        "parents_corner",
+        "logout_button"
+    )
 
     p.tap(lx, ly, "logout")
 

@@ -37,6 +37,11 @@ LOGIN = {
         "confirm_button": (1203, 694),
 }
 
+LICENSE_SCREEN = {
+        "license_input": (1108, 465),
+        "confirm_button": (1181, 582),# "Enter license code" white input box
+    }
+
 # ─────────────────────────────────────────────────────────────
 # SELECT PROFILE SCREEN
 # ─────────────────────────────────────────────────────────────

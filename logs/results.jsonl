@@ -140,3 +140,22 @@
 {"ts": "2026-05-24T22:39:23.911058", "mobile": "8247282471", "passed": true, "msg": "PASS"}
 {"ts": "2026-05-24T22:43:47.918425", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
 {"ts": "2026-05-24T22:43:47.918425", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:06:08.134328", "mobile": "8247282471", "passed": false, "msg": "Expected screens not found: ['Select_Profile_screen', 'home_screen']"}
+{"ts": "2026-05-25T10:14:22.853583", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:14:22.855018", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:21:28.170132", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:21:28.174546", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:35:00.857850", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:35:00.858883", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:41:58.328518", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:41:58.330061", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:48:27.403565", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:48:27.404108", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:57:06.085399", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:57:06.089051", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T10:59:40.912398", "mobile": "8247282471", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T10:59:40.918098", "mobile": "8247282471", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T11:05:56.763701", "mobile": "8247282591", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T11:05:56.765445", "mobile": "8247282591", "passed": true, "msg": "PASS"}
+{"ts": "2026-05-25T11:12:24.065706", "mobile": "8247282591", "passed": true, "msg": "Logout done"}
+{"ts": "2026-05-25T11:12:24.069806", "mobile": "8247282591", "passed": true, "msg": "PASS"}

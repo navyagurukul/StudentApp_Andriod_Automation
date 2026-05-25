@@ -147,6 +147,7 @@ class BasePage:
             return False
 
     # ─────────────────────────────────────────────
+    
     # APP RESTART
     # ─────────────────────────────────────────────
 
@@ -240,7 +241,10 @@ class BasePage:
                 return "home_screen"
 
             # LICENSE
-            if self.pixel_exists(1203, 694):
+            if (
+                self.pixel_exists(1131, 453)
+                and self.pixel_exists(1181, 582)
+            ):
                 return "license_screen"
 
             return "unknown"
