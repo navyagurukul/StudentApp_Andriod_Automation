@@ -18,14 +18,11 @@ from utils.logger import log, write_result
 from utils.data_loader import load_users
 from utils.permission_handler import PermissionHandler
 
-
-
-@pytest.mark.smoke
-@pytest.mark.regression
-@pytest.mark.android
-
 @pytest.mark.usefixtures("driver")
 class TestBasePage:
+    @pytest.mark.smoke
+    @pytest.mark.regression
+    @pytest.mark.android
 
     def test_screen_detection(self, driver: WebDriver):
 
