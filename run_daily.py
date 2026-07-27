@@ -135,6 +135,29 @@ def post_slack(text):
     print("[run_daily] posted to Slack.")
 
 
+def blocked_reason() -> str:
+    """Why did every test skip?
+
+    An all-skipped run has two very different causes - no instrumented build on
+    the device, or the relay not reachable - and they need different fixes, so
+    name the real one instead of always blaming the broker.
+    """
+    pkg = os.getenv("APP_PACKAGE", "com.OritSciencesPrivateLimited.EnglishGurukul.student")
+    try:
+        out = subprocess.run(
+            ["adb", "shell", "pm", "list", "packages", pkg],
+            capture_output=True, text=True, timeout=30,
+        ).stdout
+    except Exception:
+        return "AltServer/broker down"
+    # `pm list packages <filter>` matches substrings, so ...student also hits
+    # ...studentapp. Compare whole lines.
+    installed = {ln.strip().removeprefix("package:") for ln in out.splitlines() if ln.strip()}
+    if pkg not in installed:
+        return f"instrumented build not installed ({pkg})"
+    return "AltServer/broker down"
+
+
 def main():
     args = sys.argv[1:] or []
     run_pytest(args)
@@ -159,7 +182,7 @@ def main():
     if failed:
         status = "❌ FAIL"
     elif passed == 0 and skipped:
-        status = "⤼ BLOCKED (AltServer/broker down)"
+        status = f"⤼ BLOCKED ({blocked_reason()})"
     else:
         status = "✅ PASS"
 
