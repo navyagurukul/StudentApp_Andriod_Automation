@@ -95,6 +95,24 @@ jobs:
       # =====================================================
       # Verify Device (REAL DEVICE)
       # =====================================================
+      # This machine has two adb.exe: chocolatey's (36.0.0, first on PATH) and
+      # the SDK's (37.0.0, the one Appium uses via ANDROID_HOME). A client only
+      # talks to a server of its own version - the other one kills and restarts
+      # it, which drops the device transport mid-session and surfaces as
+      # "device '<udid>' not found". Pin every step to the SDK adb.
+      - name: Pin adb to the Android SDK
+        shell: powershell
+        run: |
+          $tools = Join-Path $env:ANDROID_HOME "platform-tools"
+          if (-not (Test-Path (Join-Path $tools "adb.exe"))) {
+            Write-Host "adb.exe not found under ANDROID_HOME ($env:ANDROID_HOME)"
+            exit 1
+          }
+          $tools | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          & "$tools\adb.exe" kill-server
+          & "$tools\adb.exe" start-server
+          & "$tools\adb.exe" version
+
       - name: Verify Device
         shell: powershell
         run: |
@@ -264,6 +282,24 @@ jobs:
       # =====================================================
       # Verify Device (REAL DEVICE)
       # =====================================================
+      # This machine has two adb.exe: chocolatey's (36.0.0, first on PATH) and
+      # the SDK's (37.0.0, the one Appium uses via ANDROID_HOME). A client only
+      # talks to a server of its own version - the other one kills and restarts
+      # it, which drops the device transport mid-session and surfaces as
+      # "device '<udid>' not found". Pin every step to the SDK adb.
+      - name: Pin adb to the Android SDK
+        shell: powershell
+        run: |
+          $tools = Join-Path $env:ANDROID_HOME "platform-tools"
+          if (-not (Test-Path (Join-Path $tools "adb.exe"))) {
+            Write-Host "adb.exe not found under ANDROID_HOME ($env:ANDROID_HOME)"
+            exit 1
+          }
+          $tools | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          & "$tools\adb.exe" kill-server
+          & "$tools\adb.exe" start-server
+          & "$tools\adb.exe" version
+
       - name: Verify Device
         shell: powershell
         run: |
