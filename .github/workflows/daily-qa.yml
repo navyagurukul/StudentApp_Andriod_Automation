@@ -2,8 +2,9 @@ name: Student App QA (AltTester)
 
 on:
   schedule:
-    # 04:30 UTC = 10:00 IST, daily
-    - cron: "30 4 * * *"
+    # 04:45 UTC = 10:15 IST, daily - staggered 15 min after daily-appium.yml,
+    # which shares the "student-app-device" concurrency group.
+    - cron: "45 4 * * *"
 
   workflow_dispatch:
 

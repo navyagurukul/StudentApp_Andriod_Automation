@@ -8,3 +8,9 @@ venv/
 # Test artifacts (keep the folder, ignore its contents)
 reports/*
 !reports/.gitkeep
+
+# Appium suite run output (appium/)
+appium/reports/
+appium/allure-results/
+appium/screenshots/
+appium/appium.log

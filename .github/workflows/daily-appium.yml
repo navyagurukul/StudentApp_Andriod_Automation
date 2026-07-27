@@ -1,0 +1,194 @@
+name: Student App QA (Appium, no AltTester)
+
+# The Appium suite in appium/ drives the shipped production build over
+# UiAutomator2, so it needs no AltTester-instrumented APK on the device. This is
+# the run that produces real results today; daily-qa.yml (AltTester) reports
+# skips until an instrumented build is installed.
+
+on:
+  schedule:
+    # 04:30 UTC = 10:00 IST, daily
+    - cron: "30 4 * * *"
+
+  workflow_dispatch:
+
+  push:
+    branches: ["main"]
+    paths:
+      - "appium/**"
+      - "tools/slack_junit_report.py"
+      - ".github/workflows/daily-appium.yml"
+
+# Shared with daily-qa.yml - only one workflow may drive the phone at a time.
+concurrency:
+  group: student-app-device
+  cancel-in-progress: false
+
+jobs:
+  appium:
+    name: Appium Suite
+    runs-on: [self-hosted, Windows]
+
+    env:
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.studentapp
+      APP_ACTIVITY: io.branch.unity.BranchUnityActivity
+      PLATFORM_NAME: Android
+      DEVICE_NAME: 7245d3d80508
+      APPIUM_PORT: 4723
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Python
+        shell: powershell
+        run: |
+          python --version
+          pip --version
+
+      - name: Install Python Dependencies
+        shell: powershell
+        working-directory: appium
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+
+      # Idempotent: only reinstalls on a version mismatch, so a run never rips
+      # the global appium out from under a concurrent job.
+      - name: Ensure Appium Toolchain
+        shell: powershell
+        run: |
+          $current = ""
+          try { $current = (appium -v | Out-String).Trim() } catch { $current = "" }
+          if ($current -ne "2.11.3") {
+            Write-Host "Installing appium@2.11.3 (found '$current')"
+            npm install -g appium@2.11.3
+          }
+          $drivers = ""
+          try { $drivers = (appium driver list --installed | Out-String) } catch { $drivers = "" }
+          if ($drivers -notmatch "uiautomator2@2\.45\.1") {
+            Write-Host "Installing uiautomator2@2.45.1"
+            try { appium driver uninstall uiautomator2 } catch { }
+            appium driver install uiautomator2@2.45.1
+          }
+          appium -v
+          appium driver list --installed
+
+      # Two adb.exe exist here (chocolatey's and the SDK's). A client only talks
+      # to a server of its own version - the other kills and restarts it, which
+      # drops the device transport mid-session.
+      - name: Pin adb to the Android SDK
+        shell: powershell
+        run: |
+          $tools = Join-Path $env:ANDROID_HOME "platform-tools"
+          if (-not (Test-Path (Join-Path $tools "adb.exe"))) {
+            Write-Host "adb.exe not found under ANDROID_HOME ($env:ANDROID_HOME)"
+            exit 1
+          }
+          $tools | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          & "$tools\adb.exe" kill-server
+          & "$tools\adb.exe" start-server
+          & "$tools\adb.exe" version
+
+      - name: Verify Device
+        shell: powershell
+        run: |
+          $deadline = (Get-Date).AddMinutes(2)
+          $ready = $false
+          while (-not $ready -and (Get-Date) -lt $deadline) {
+            $list = (adb devices | Out-String)
+            if ($list -match "$env:DEVICE_NAME\s+device") { $ready = $true; break }
+            Write-Host "Waiting for device $env:DEVICE_NAME ..."
+            Start-Sleep -Seconds 5
+          }
+          adb devices -l
+          if (-not $ready) {
+            Write-Host "Device $env:DEVICE_NAME is not attached - check the USB cable / USB debugging prompt"
+            exit 1
+          }
+          adb -s $env:DEVICE_NAME wait-for-device
+          Write-Host "boot_completed=$(adb -s $env:DEVICE_NAME shell getprop sys.boot_completed)"
+
+      - name: Kill Old Appium
+        shell: powershell
+        run: |
+          $connections = Get-NetTCPConnection -LocalPort 4723 -ErrorAction SilentlyContinue
+          if ($connections) {
+            $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique
+            foreach ($p in $pids) { Stop-Process -Id $p -Force }
+          }
+
+      - name: Start Appium Server
+        shell: powershell
+        working-directory: appium
+        run: |
+          Start-Process cmd.exe -ArgumentList "/c appium --address 127.0.0.1 --port 4723 > appium.log 2>&1"
+          Start-Sleep -Seconds 20
+
+      - name: Verify Appium Server
+        shell: powershell
+        working-directory: appium
+        run: |
+          try {
+            $response = Invoke-RestMethod -Uri "http://127.0.0.1:4723/status"
+            Write-Host "Appium Server Running"
+            $response
+          }
+          catch {
+            Write-Host "Appium Server Failed"
+            Get-Content appium.log
+            exit 1
+          }
+
+      - name: Run Suite
+        shell: powershell
+        working-directory: appium
+        continue-on-error: true
+        run: |
+          pytest -v -s --junitxml=reports/junit.xml --alluredir=allure-results
+
+      # The webhook lives on the runner, never in this public repo.
+      - name: Load Slack Webhook
+        shell: powershell
+        run: |
+          $file = "C:\Users\user\.eg-qa\slack_webhook.txt"
+          if (-not (Test-Path $file)) {
+            Write-Host "::warning::$file not found - the report will be printed, not posted"
+            exit 0
+          }
+          $hook = (Get-Content $file -Raw).Trim()
+          Write-Host "::add-mask::$hook"
+          "SLACK_WEBHOOK_URL=$hook" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Post Slack Report
+        if: always()
+        shell: powershell
+        run: |
+          python tools/slack_junit_report.py --junit appium/reports/junit.xml --title "Student App (Android) - Appium daily"
+
+      # Fail the job when tests failed - the Slack report has already gone out.
+      - name: Gate On Test Result
+        if: always()
+        shell: powershell
+        working-directory: appium
+        run: |
+          if (-not (Test-Path reports/junit.xml)) { Write-Host "no junit.xml - suite did not run"; exit 1 }
+          [xml]$x = Get-Content reports/junit.xml
+          $s = $x.testsuites.testsuite
+          if (-not $s) { $s = $x.testsuite }
+          Write-Host "tests=$($s.tests) failures=$($s.failures) errors=$($s.errors) skipped=$($s.skipped)"
+          if ([int]$s.failures -gt 0 -or [int]$s.errors -gt 0) { exit 1 }
+
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-daily-report
+          path: |
+            appium/reports/
+            appium/allure-results/
+            appium/appium.log
+          if-no-files-found: ignore
