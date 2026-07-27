@@ -1,98 +1,56 @@
-"""
-conftest.py — Appium session for English Gurukul student app.
-Works with installed APK on real Android device.
+"""pytest fixtures: one AltDriver connection per session + screenshot-on-failure.
 
-Before running:
-    Terminal 1:
-        appium --port 4723
-
-    Terminal 2:
-        adb devices
-        pytest tests/test_login_flow.py -v -s
+If no AltServer is reachable (the license-gated broker isn't running), the `alt`
+fixture SKIPS rather than fails every test — so an infra outage reads as
+"skipped: AltServer unavailable", not a wall of red. Real assertion failures still
+fail normally.
 """
+from __future__ import annotations
 
 import pytest
-import time
 
-from appium import webdriver
-from appium.options.android.uiautomator2.base import UiAutomator2Options
+from config import settings
+from utils.alt_connect import open_driver, close_driver
 
-from utils.logger import log
-
-
-APP_PACKAGE = "com.OritSciencesPrivateLimited.EnglishGurukul.studentapp"
-APP_ACTIVITY = "io.branch.unity.BranchUnityActivity"
-
-APPIUM_URL = "http://127.0.0.1:4723"
-
-DEVICE_ID = "7245d3d80508"
-
-
-def build_options(no_reset=True):
-
-    opt = UiAutomator2Options()
-
-    # =====================================================
-    # Platform
-    # =====================================================
-    opt.platform_name = "Android"
-
-    # =====================================================
-    # Real Device
-    # =====================================================
-    opt.device_name = "Android_Device"
-    opt.udid = DEVICE_ID
-
-    # =====================================================
-    # Automation
-    # =====================================================
-    opt.automation_name = "UiAutomator2"
-
-    # =====================================================
-    # App
-    # =====================================================
-    opt.app_package = APP_PACKAGE
-    opt.app_activity = APP_ACTIVITY
-
-    # =====================================================
-    # Session
-    # =====================================================
-    opt.no_reset = no_reset
-    opt.full_reset = False
-
-    opt.auto_grant_permissions = True
-    opt.new_command_timeout = 300
-
-    return opt
+settings.SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 @pytest.fixture(scope="session")
-def driver():
-
-    log.info("Connecting to Appium...")
-
-    drv = webdriver.Remote(
-        command_executor=APPIUM_URL,
-        options=build_options()
-    )
-
-    time.sleep(5)
-
-    sz = drv.get_window_size()
-
-    log.info(f"App launched — screen {sz['width']}x{sz['height']}")
-
-    yield drv
-
-    drv.quit()
-
-    log.info("Session closed")
+def alt():
+    try:
+        driver = open_driver()
+    except ConnectionError as exc:
+        pytest.skip(f"AltServer unavailable — {exc}")
+        return
+    try:
+        yield driver
+    finally:
+        close_driver(driver)
 
 
-def pytest_runtest_logreport(report):
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    """Capture a screenshot when a test fails, saved under reports/screenshots/."""
+    outcome = yield
+    report = outcome.get_result()
+    # Report on failures in setup (fixtures) or the call itself — a blank/
+    # unresponsive screen often surfaces as a fixture command timeout.
+    if report.when not in ("setup", "call") or not report.failed:
+        return
+    driver = item.funcargs.get("alt")
+    safe = item.nodeid.replace("/", "_").replace("::", "__").replace(".py", "")
+    path = settings.SCREENSHOTS_DIR / f"{safe}.png"
+    try:
+        if driver is not None:
+            driver.get_png_screenshot(str(path))
+            print(f"\n[screenshot] {path}")
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"\n[screenshot failed] {exc}")
 
-    if report.when == "call":
-
-        log.info(
-            f"{'PASS' if report.passed else 'FAIL'} — {report.nodeid}"
-        )
+    # Capture blank-screen evidence (adb screenshot + logcat + scene) for every
+    # failure so app issues (e.g. blank screens) are reported with context.
+    try:
+        from utils import blank_screen
+        blank_screen.report(safe, driver, reason=f"{report.when} failure: {item.nodeid}")
+    except Exception as exc:  # pragma: no cover
+        print(f"\n[diagnostics failed] {exc}")

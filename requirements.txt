@@ -1,8 +1,9 @@
-Appium-Python-Client==3.2.1
-pytest
-pytest-html
-selenium
-PyYAML
-allure-pytest
-pytest-xdist
-webdriver-manager
+AltTester-Driver==2.3.1
+# websockets powers tools/altserver_relay.py — the license-free AltServer broker
+# that replaces AltTester Desktop. Needs >=13.0 for the websockets.asyncio.server API.
+websockets>=13.1
+pytest==8.3.3
+pytest-html==4.1.1
+pytest-rerunfailures==14.0
+python-dotenv==1.0.1
+requests==2.32.3

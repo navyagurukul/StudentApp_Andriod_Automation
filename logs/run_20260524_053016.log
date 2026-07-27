@@ -1,7 +1,0 @@
-2026-05-24 05:30:16,728 [INFO] Connecting to Appium...
-2026-05-24 05:30:28,682 [INFO] App launched — screen 2400x1080
-2026-05-24 05:30:28,683 [INFO] Total users: 1
-2026-05-24 05:30:28,683 [INFO] 
-===== USER 1: 8247282471 =====
-2026-05-24 05:30:28,883 [INFO] FAIL — tests/test_login_flow.py::TestLoginFlow::test_all_users
-2026-05-24 05:30:29,196 [INFO] Session closed

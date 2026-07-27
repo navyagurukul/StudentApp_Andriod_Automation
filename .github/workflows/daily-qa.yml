@@ -1,0 +1,107 @@
+name: Student App QA (AltTester)
+
+on:
+  schedule:
+    # 04:30 UTC = 10:00 IST, daily
+    - cron: "30 4 * * *"
+
+  workflow_dispatch:
+
+  push:
+    branches: ["main"]
+
+# One run at a time - the suite drives a single physical phone.
+concurrency:
+  group: student-app-device
+  cancel-in-progress: false
+
+jobs:
+  qa:
+    name: Daily QA
+    runs-on: [self-hosted, Windows]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Python
+        shell: powershell
+        run: |
+          python --version
+          pip --version
+
+      - name: Install Python Dependencies
+        shell: powershell
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # This machine has two adb.exe (chocolatey's and the SDK's). A client only
+      # talks to a server of its own version - the other kills and restarts it,
+      # dropping the device transport. Pin every step to the SDK copy, which is
+      # also the one `adb reverse tcp:13000` must run through for AltTester.
+      - name: Pin adb to the Android SDK
+        shell: powershell
+        run: |
+          $tools = Join-Path $env:ANDROID_HOME "platform-tools"
+          if (-not (Test-Path (Join-Path $tools "adb.exe"))) {
+            Write-Host "adb.exe not found under ANDROID_HOME ($env:ANDROID_HOME)"
+            exit 1
+          }
+          $tools | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          & "$tools\adb.exe" kill-server
+          & "$tools\adb.exe" start-server
+          & "$tools\adb.exe" version
+
+      - name: Verify Device
+        shell: powershell
+        run: |
+          $deadline = (Get-Date).AddMinutes(2)
+          $ready = $false
+          while (-not $ready -and (Get-Date) -lt $deadline) {
+            $list = (adb devices | Out-String)
+            if ($list -match "\S+\s+device(\r|\n)") { $ready = $true; break }
+            Write-Host "Waiting for a device ..."
+            Start-Sleep -Seconds 5
+          }
+          adb devices -l
+          if (-not $ready) {
+            Write-Host "No device attached - check the USB cable / USB debugging prompt"
+            exit 1
+          }
+
+      # The webhook lives on the runner, never in this public repo. Swap this for
+      # a repo secret (secrets.SLACK_WEBHOOK_URL) whenever you'd rather manage it
+      # on GitHub.
+      - name: Load Slack Webhook
+        shell: powershell
+        run: |
+          $file = "C:\Users\user\.eg-qa\slack_webhook.txt"
+          if (-not (Test-Path $file)) {
+            Write-Host "::warning::$file not found - run_daily.py will print the report instead of posting it"
+            exit 0
+          }
+          $hook = (Get-Content $file -Raw).Trim()
+          Write-Host "::add-mask::$hook"
+          "SLACK_WEBHOOK_URL=$hook" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      # run_daily.py runs pytest, groups results per area and posts to Slack.
+      - name: Run Daily QA + Post Slack Report
+        shell: powershell
+        run: |
+          python run_daily.py
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-qa-report
+          path: reports/
+
+      - name: Upload Relay Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-qa-relay-log
+          path: reports/altserver_relay.log
+          if-no-files-found: ignore

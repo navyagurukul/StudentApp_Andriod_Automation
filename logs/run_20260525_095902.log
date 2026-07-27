@@ -1,6 +1,0 @@
-2026-05-25 09:59:02,845 [INFO] Connecting to Appium...
-2026-05-25 09:59:22,083 [INFO] App launched — screen 2400x1080
-2026-05-25 09:59:22,107 [INFO] Screen size detected: 2400 x 1080
-2026-05-25 09:59:22,196 [INFO] Detected screen: unknown
-2026-05-25 09:59:22,198 [INFO] PASS — tests/test_login_flow.py::TestBasePage::test_all_users
-2026-05-25 09:59:22,448 [INFO] Session closed
