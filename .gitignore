@@ -1,0 +1,15 @@
+# Test run output — published as workflow artifacts, never committed
+screenshots/
+allure-results/
+reports/
+appium.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local env
+.env

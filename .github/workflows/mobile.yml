@@ -12,6 +12,11 @@ on:
 
   workflow_dispatch:
 
+# Only one run at a time may touch the physical device.
+concurrency:
+  group: student-app-device-7245d3d80508
+  cancel-in-progress: false
+
 jobs:
 
   # =========================================================
@@ -66,26 +71,25 @@ jobs:
           node -v
           npm -v
 
-      - name: Remove Old Appium
+      # Idempotent: only reinstalls when the version is wrong, so a run never
+      # rips the global appium out from under a concurrent job (~2 min saved).
+      - name: Ensure Appium Toolchain
         shell: powershell
         run: |
-          npm uninstall -g appium
-      - name: Install Stable Appium
-        shell: powershell
-        run: |
-          npm install -g appium@2.11.3
+          $current = ""
+          try { $current = (appium -v | Out-String).Trim() } catch { $current = "" }
+          if ($current -ne "2.11.3") {
+            Write-Host "Installing appium@2.11.3 (found '$current')"
+            npm install -g appium@2.11.3
+          }
+          $drivers = ""
+          try { $drivers = (appium driver list --installed | Out-String) } catch { $drivers = "" }
+          if ($drivers -notmatch "uiautomator2@2\.45\.1") {
+            Write-Host "Installing uiautomator2@2.45.1"
+            try { appium driver uninstall uiautomator2 } catch { }
+            appium driver install uiautomator2@2.45.1
+          }
           appium -v
-      - name: Remove Old UiAutomator2 Driver
-        shell: powershell
-        run: |
-          appium driver uninstall uiautomator2
-      - name: Install Compatible UiAutomator2 Driver
-        shell: powershell
-        run: |
-          appium driver install uiautomator2@2.45.1
-      - name: Verify Installed Drivers
-        shell: powershell
-        run: |
           appium driver list --installed
 
       # =====================================================
@@ -94,7 +98,26 @@ jobs:
       - name: Verify Device
         shell: powershell
         run: |
-          adb devices
+          adb start-server | Out-Null
+          $deadline = (Get-Date).AddMinutes(2)
+          $ready = $false
+          while (-not $ready -and (Get-Date) -lt $deadline) {
+            $list = (adb devices | Out-String)
+            if ($list -match "$env:DEVICE_NAME\s+device") { $ready = $true; break }
+            if ($list -match "$env:DEVICE_NAME\s+(unauthorized|offline)") {
+              Write-Host "Device is $($Matches[1]) - reconnecting"
+              adb disconnect | Out-Null
+            }
+            Write-Host "Waiting for device $env:DEVICE_NAME ..."
+            Start-Sleep -Seconds 5
+          }
+          adb devices -l
+          if (-not $ready) {
+            Write-Host "Device $env:DEVICE_NAME is not attached - check the USB cable / USB debugging prompt"
+            exit 1
+          }
+          adb -s $env:DEVICE_NAME wait-for-device
+          Write-Host "boot_completed=$(adb -s $env:DEVICE_NAME shell getprop sys.boot_completed)"
 
       # =====================================================
       # Kill Old Appium
@@ -174,8 +197,10 @@ jobs:
   regression-tests:
 
     name: Regression Tests
-    if: github.event_name != 'pull_request' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/develop'
-    runs-on: [self-hosted, Windows]     
+    if: always() && (github.event_name != 'pull_request' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/develop')
+    # Same phone, same Appium port, same global npm install as Smoke — must not run in parallel.
+    needs: smoke-tests
+    runs-on: [self-hosted, Windows]
 
     env:
       APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.studentapp
@@ -215,26 +240,25 @@ jobs:
           node -v
           npm -v
 
-      - name: Remove Old Appium
+      # Idempotent: only reinstalls when the version is wrong, so a run never
+      # rips the global appium out from under a concurrent job (~2 min saved).
+      - name: Ensure Appium Toolchain
         shell: powershell
         run: |
-          npm uninstall -g appium
-      - name: Install Stable Appium
-        shell: powershell
-        run: |
-          npm install -g appium@2.11.3
+          $current = ""
+          try { $current = (appium -v | Out-String).Trim() } catch { $current = "" }
+          if ($current -ne "2.11.3") {
+            Write-Host "Installing appium@2.11.3 (found '$current')"
+            npm install -g appium@2.11.3
+          }
+          $drivers = ""
+          try { $drivers = (appium driver list --installed | Out-String) } catch { $drivers = "" }
+          if ($drivers -notmatch "uiautomator2@2\.45\.1") {
+            Write-Host "Installing uiautomator2@2.45.1"
+            try { appium driver uninstall uiautomator2 } catch { }
+            appium driver install uiautomator2@2.45.1
+          }
           appium -v
-      - name: Remove Old UiAutomator2 Driver
-        shell: powershell
-        run: |
-          appium driver uninstall uiautomator2
-      - name: Install Compatible UiAutomator2 Driver
-        shell: powershell
-        run: |
-          appium driver install uiautomator2@2.45.1
-      - name: Verify Installed Drivers
-        shell: powershell
-        run: |
           appium driver list --installed
 
       # =====================================================
@@ -243,7 +267,26 @@ jobs:
       - name: Verify Device
         shell: powershell
         run: |
-          adb devices
+          adb start-server | Out-Null
+          $deadline = (Get-Date).AddMinutes(2)
+          $ready = $false
+          while (-not $ready -and (Get-Date) -lt $deadline) {
+            $list = (adb devices | Out-String)
+            if ($list -match "$env:DEVICE_NAME\s+device") { $ready = $true; break }
+            if ($list -match "$env:DEVICE_NAME\s+(unauthorized|offline)") {
+              Write-Host "Device is $($Matches[1]) - reconnecting"
+              adb disconnect | Out-Null
+            }
+            Write-Host "Waiting for device $env:DEVICE_NAME ..."
+            Start-Sleep -Seconds 5
+          }
+          adb devices -l
+          if (-not $ready) {
+            Write-Host "Device $env:DEVICE_NAME is not attached - check the USB cable / USB debugging prompt"
+            exit 1
+          }
+          adb -s $env:DEVICE_NAME wait-for-device
+          Write-Host "boot_completed=$(adb -s $env:DEVICE_NAME shell getprop sys.boot_completed)"
 
       # =====================================================
       # Kill Old Appium
