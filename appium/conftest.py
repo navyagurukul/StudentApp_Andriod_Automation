@@ -11,6 +11,7 @@ Before running:
         pytest tests/test_login_flow.py -v -s
 """
 
+import os
 import pytest
 import time
 
@@ -25,7 +26,9 @@ APP_ACTIVITY = "io.branch.unity.BranchUnityActivity"
 
 APPIUM_URL = "http://127.0.0.1:4723"
 
-DEVICE_ID = "7245d3d80508"
+# No hardcoded serial: CI exports the attached phone as DEVICE_NAME.
+# Locally, leave it unset and Appium uses the single connected device.
+DEVICE_ID = os.environ.get("DEVICE_NAME") or os.environ.get("ANDROID_SERIAL")
 
 
 def build_options(no_reset=True):
@@ -41,7 +44,8 @@ def build_options(no_reset=True):
     # Real Device
     # =====================================================
     opt.device_name = "Android_Device"
-    opt.udid = DEVICE_ID
+    if DEVICE_ID:
+        opt.udid = DEVICE_ID
 
     # =====================================================
     # Automation
